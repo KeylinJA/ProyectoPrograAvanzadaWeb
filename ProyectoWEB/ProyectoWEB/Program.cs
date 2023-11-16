@@ -1,7 +1,11 @@
+using ProyectoWEB.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IUsuarioModel, UsuarioModel>();
 
 var app = builder.Build();
 
