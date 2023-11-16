@@ -9,5 +9,7 @@
 		public string Contrasenna { get; set; } = string.Empty;
 		public bool Estado { get; set; }
 		public Byte IdRol { get; set; }
+
+		public string contrasennaTemporal {  get; set; } = string.Empty;
 	}
 }

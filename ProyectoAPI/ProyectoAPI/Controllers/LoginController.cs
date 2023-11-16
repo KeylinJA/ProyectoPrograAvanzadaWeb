@@ -15,12 +15,14 @@ namespace ProyectoAPI.Controllers
     {
 
         private readonly IConfiguration _configuration;
+        private IHostEnvironment _hostingEnvironment;
         private string _connection;
 
-        public LoginController(IConfiguration configuration)
+        public LoginController(IConfiguration configuration, IHostEnvironment hostingEnvironment)
         {
             _configuration = configuration;
             _connection = _configuration.GetConnectionString("DefaultConnection");
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [HttpPost]
@@ -35,8 +37,15 @@ namespace ProyectoAPI.Controllers
                         new { entidad.CorreoElectronico, entidad.Contrasenna },
                         commandType: CommandType.StoredProcedure).FirstOrDefault();
 
-                    return Ok(datos);
-
+                    if (datos != null)
+                    {
+                        return Ok(datos);
+                    }
+                    else
+                    {
+                        // No user found, return 404 status code
+                        return NotFound("User not found");
+                    }
                 }
             }
             catch (Exception ex)
@@ -44,6 +53,7 @@ namespace ProyectoAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
 
         [HttpPost]
         [Route("RegistrarCuenta")]
@@ -80,7 +90,14 @@ namespace ProyectoAPI.Controllers
                         new { entidad.CorreoElectronico },
                         commandType: CommandType.StoredProcedure).FirstOrDefault();
 
-                    EnviarCorreo(datos.CorreoElectronico, "Recuperar Contraseña", HTML(datos.Nombre));
+                    string contrasennaTemporal = GenerarCodigo();
+                    string contenido = HTML(datos, contrasennaTemporal);
+
+                     context.Execute("ActualizarClaveTemp",
+                        new { datos.IdUsuario, contrasennaTemporal },
+                        commandType: CommandType.StoredProcedure);
+
+                    EnviarCorreo(datos.CorreoElectronico, "Recuperar Contraseña", contenido);
 
                     return Ok(1);
                 }
@@ -91,12 +108,53 @@ namespace ProyectoAPI.Controllers
             }
         }
 
-        private string HTML(string Nombre)
+        [HttpPut]
+        [Route("CambiarClaveCuenta")]
+        public IActionResult CambiarClaveCuenta(UsuarioEnt entidad)
         {
-            string rutaArchivo = @"C:\correo.html";
-            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
-            return htmlArchivo.Replace("@@Nombre", Nombre);
+            try
+            {
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Execute("CambiarClaveCuenta",
+                        new { entidad.IdUsuario, entidad.contrasennaTemporal, entidad.Contrasenna },
+                        commandType: CommandType.StoredProcedure);
+
+                    return Ok(1);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+
+        private string GenerarCodigo()
+        {
+            int length = 4;
+            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < length--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+            return res.ToString();
+        }
+
+        //FALTA ENCRIPTAR
+        private string HTML(UsuarioEnt datos, string contrasennaTemporal)
+        {
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreosTemplate\\correo.html");
+            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
+
+            htmlArchivo = htmlArchivo.Replace("@@Nombre", datos.Nombre);
+            htmlArchivo = htmlArchivo.Replace("@@ClaveTemporal", contrasennaTemporal);
+            htmlArchivo = htmlArchivo.Replace("@@Link", "https://localhost:7244/Login/CambiarClaveCuenta?q" + datos.IdUsuario.ToString());
+
+            return htmlArchivo;
+        }
+
 
         private void EnviarCorreo(string Destinatario, string Asunto, string Mensaje)
         {

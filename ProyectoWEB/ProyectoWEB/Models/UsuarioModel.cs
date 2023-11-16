@@ -51,5 +51,17 @@ namespace ProyectoWEB.Models
                 return 0;
 
         }
+
+        public int CambiarClaveCuenta(UsuarioEnt entidad)
+        {
+            string url = _urlApi + "api/Login/CambiarClaveCuenta";
+            JsonContent obj = JsonContent.Create(entidad);
+            var resp = _httpClient.PutAsync(url, obj).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<int>().Result;
+            else
+                return 0;
+        }
     }
 }

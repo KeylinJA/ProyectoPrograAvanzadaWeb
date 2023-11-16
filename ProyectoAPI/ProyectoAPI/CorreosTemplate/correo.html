@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperación de Contraseña - Notas y Cuerdas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            line-height: 1.6em;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 3px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="../CorreosTemplate/logo.png">
+        </div>
+        <h1>Recuperación de Contraseña</h1>
+        <p>Hola @@Nombre: </p>
+        <p>Hemos recibido una solicitud para restablecer la contraseña de tu cuenta en Notas y Cuerdas. Si no has realizado esta solicitud, puedes ignorar este correo.</p>
+        <p>Para restablecer tu contraseña, haz clic en el siguiente botón y utiliza la siguiente clave temporal: <b>@@ClaveTemporal</b></p>
+        <p>Este código es válido solo durante 30 minutos</p>
+        <a class="button" href="@@Link">Restablecer Contraseña</a>
+        <p>Si el botón no funciona, también puedes copiar y pegar el siguiente enlace en tu navegador:</p>
+        <p>@@Link</p>
+        <p>¡Gracias por elegir Notas y Cuerdas!</p>
+        <div class="footer">
+            <p>Este correo electrónico fue enviado automáticamente. Por favor, no respondas a este mensaje.</p>
+            <p>Notas y Cuerdas &copy; 2023</p>
+        </div>
+    </div>
+</body>
+</html>

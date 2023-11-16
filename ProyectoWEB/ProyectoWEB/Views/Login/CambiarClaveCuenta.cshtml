@@ -1,8 +1,54 @@
-﻿
+﻿@model ProyectoWEB.Entities.UsuarioEnt
+
 @{
-    ViewData["Title"] = "CambiarClaveCuenta";
+    ViewData["Title"] = "IniciarSesion";
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
 }
 
-<h1>CambiarClaveCuenta</h1>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img" style="background-image: url(images/foto.jpg);">
+                    </div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Iniciar Sesión</h3>
+                            </div>
+                        </div>
+
+                        @using (Html.BeginForm("CambiarClaveCuenta", "Login", FormMethod.Post, new { @class = "signin-form" }))
+                        {
+
+                            @ViewBag.MensajePantalla
+
+                            @Html.TextBoxFor(m => m.IdUsuario)
+
+                            <div class="form-group mb-3">
+                                <label class="label" for="username">Correo Electrónico</label>
+                                @Html.TextBoxFor(m => m.contrasennaTemporal, new {@class="form-control", @type="text", @placeholder="Correo Electrónico"})
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">Contraseña</label>
+                                @Html.TextBoxFor(m => m.Contrasenna, new {@class="form-control", @type="password", @placeholder="Contraseña"})
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control btn btn-primary rounded submit px-3" value="Cambiar Contraseña">
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 

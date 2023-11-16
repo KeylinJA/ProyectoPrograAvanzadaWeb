@@ -7,14 +7,13 @@ namespace ProyectoWEB.Controllers
     public class LoginController : Controller
     {
         //Dependencias
-        private readonly ILogger<LoginController> _logger;
+
         private readonly IUsuarioModel _usuarioModel;
         //
 
         //Constructores
-        public LoginController(ILogger<LoginController> logger, IUsuarioModel usuarioModel)
+        public LoginController(IUsuarioModel usuarioModel)
         {
-            _logger = logger;
             _usuarioModel = usuarioModel;
         }
         //
@@ -88,9 +87,26 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
-        public IActionResult CambiarClaveCuenta(string correo)
+        public IActionResult CambiarClaveCuenta(string q)
         {
-            return View();
+            UsuarioEnt entidad = new UsuarioEnt();
+            entidad.IdUsuario = long.Parse(q);
+            return View(entidad);
+        }
+
+        [HttpPost]
+        public IActionResult CambiarClaveCuenta(UsuarioEnt entidad)
+        {
+            var resp = _usuarioModel.CambiarClaveCuenta(entidad);
+            if (resp == 1)
+            {
+                return RedirectToAction("IniciarSesion", "Login");
+            }
+            else
+            {
+                ViewBag.MensajePantalla = "No se pudo actualizar su contraseña";
+                return View();
+            }
         }
     }
 }
