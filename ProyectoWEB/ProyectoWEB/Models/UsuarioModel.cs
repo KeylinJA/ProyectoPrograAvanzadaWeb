@@ -53,7 +53,7 @@ namespace ProyectoWEB.Models
 
         }
 
-<<<<<<< Updated upstream
+
         public int CambiarClaveCuenta(UsuarioEnt entidad)
         {
             string url = _urlApi + "api/Login/CambiarClaveCuenta";
@@ -64,17 +64,7 @@ namespace ProyectoWEB.Models
                 return resp.Content.ReadFromJsonAsync<int>().Result;
             else
                 return 0;
-=======
-        public List<ProductosEnt>? ConsultarUsuarios()
-        {
-            string url = _urlApi + "api/Producto/ConsultarProductos";
-            var resp = _httpClient.GetAsync(url).Result;
-
-            if (resp.IsSuccessStatusCode)
-                return resp.Content.ReadFromJsonAsync<List<ProductosEnt>>().Result;
-            else
-                return null;
->>>>>>> Stashed changes
         }
+
     }
 }
