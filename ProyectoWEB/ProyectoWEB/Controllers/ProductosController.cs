@@ -14,6 +14,12 @@ namespace PlantillaProyecto.Controllers
             _productosModel = productoModel;
         }
 
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult ConsultarProductos()
         {
