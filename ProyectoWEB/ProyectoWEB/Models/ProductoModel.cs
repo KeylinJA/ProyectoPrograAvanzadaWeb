@@ -1,4 +1,5 @@
-﻿using ProyectoWEB.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoWEB.Entities;
 using System.Configuration;
 using System.Net.Http.Headers;
 
@@ -19,6 +20,8 @@ namespace ProyectoWEB.Models
             _urlApi = _configuration.GetSection("Llaves:urlApi").Value;
         }
 
+       
+        
         public List<ProductosEnt>? ConsultarProductos()
         {
             string url = _urlApi + "api/Usuario/ConsultarProductos";

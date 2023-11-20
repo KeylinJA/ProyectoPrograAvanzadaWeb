@@ -15,7 +15,8 @@ namespace PlantillaProyecto.Controllers
         }
 
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult InicioProductos()
         {
             return View();
         }
@@ -26,5 +27,12 @@ namespace PlantillaProyecto.Controllers
             var datos = _productosModel.ConsultarProductos();
             return View(datos);
         }
+
+        [HttpGet]
+        public IActionResult Platillos()
+        {
+            return View();
+        }
+
     }
 }

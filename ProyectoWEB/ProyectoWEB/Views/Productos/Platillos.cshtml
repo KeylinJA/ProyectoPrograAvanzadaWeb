@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Notas y Cuerdas";
+﻿
+@{
+    ViewData["Title"] = "Platillos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,15 +14,7 @@
             </a>
             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                 <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                   @* <div class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a>
-                        <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                            <a href="" class="dropdown-item">Men's Dresses</a>
-                            <a href="" class="dropdown-item">Women's Dresses</a>
-                            <a href="" class="dropdown-item">Baby's Dresses</a>
-                        </div>
-                    </div>*@
-                    <a href="@Url.Action("Platillos", "Productos")" class="nav-item nav-link">Platillos</a>
+                    <a href="" class="nav-item nav-link">Platillos</a>
                     <a href="" class="nav-item nav-link">Baterías</a>
                     <a href="" class="nav-item nav-link">Bajos</a>
                     <a href="" class="nav-item nav-link">Guitarras</a>
@@ -29,7 +22,7 @@
                     <a href="" class="nav-item nav-link">Viento</a>
                     <a href="" class="nav-item nav-link">Pianos y teclados</a>
                     <a href="" class="nav-item nav-link">Bases</a>
-                   
+
                 </div>
             </nav>
         </div>
@@ -46,7 +39,7 @@
                         <a href="#" class="nav-item nav-link active">Inicio</a>
                         <a href="@Url.Action("InicioProductos", "Productos")" class="nav-item nav-link">Productos</a>
 
-                       
+
                         <a href="#" class="nav-item nav-link">Contacto</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
@@ -55,81 +48,14 @@
                     </div>
                 </div>
             </nav>
-            <div id="header-carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active" style="height: 410px;">
-                        <img class="img-fluid" src="imagenes/carru1.jpg" alt="Image">
-                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" style="max-width: 700px;">
-                                <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Descuento</h4>
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">En tu primera compra</h3>
-                                <a href="" class="btn btn-light py-2 px-3">Comprar ahora</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item" style="height: 410px;">
-                        <img class="img-fluid" src="imagenes/carru3.jpg" alt="Image">
-                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" style="max-width: 700px;">
-                                <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Descuento</h4>
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">En tu primera compra</h3>
-                                <a href="" class="btn btn-light py-2 px-3">Comprar ahora</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-                    <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                        <span class="carousel-control-prev-icon mb-n2"></span>
-                    </div>
-                </a>
-                <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                    <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                        <span class="carousel-control-next-icon mb-n2"></span>
-                    </div>
-                </a>
-            </div>
         </div>
     </div>
 </div>
 <!-- Navbar End -->
-
-<!-- Featured Start -->
-
-<div class="container-fluid pt-5">
-    <div class="row px-xl-5 pb-3">
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
-                <h5 class="font-weight-semi-bold m-0">Productos de calidad</h5>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
-                <h5 class="font-weight-semi-bold m-0">Envíos gratis*</h5>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                <h5 class="font-weight-semi-bold m-0">1 mes de garantía</h5>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
-                <h5 class="font-weight-semi-bold m-0">Atención al cliente</h5>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Featured End -->
 <!-- Products Start -->
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Nuevos Ingresos</span></h2>
+        <h2 class="section-title px-5"><span class="px-2">Platillos</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -223,38 +149,5 @@
     </div>
 </div>
 <!-- Subscribe End -->
-<!-- Vendor Start -->
-@*<div class="container-fluid py-5">
-        <div class="row px-xl-5">
-            <div class="col">
-                <div class="owl-carousel vendor-carousel">
-                    <div class="vendor-item border p-4">
-                        <img src="~/plantilla/img/vendor-1.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="~/plantilla/img/vendor-2.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="~/plantilla/img/vendor-3.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="~/plantilla/img/vendor-4.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="~/plantilla/img/vendor-5.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="~/plantilla/img/vendor-6.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="~/plantilla/img/vendor-7.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="~/plantilla/img/vendor-8.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-<!-- Vendor End -->
- 
+
+
