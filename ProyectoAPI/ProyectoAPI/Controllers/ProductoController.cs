@@ -31,7 +31,7 @@ namespace ProyectoAPI.Controllers
             {
                 using (var context = new SqlConnection(_connection))
                 {
-                    var datos = context.Query<ProductosEnt>("ConsultarProductos",
+                    var datos = context.Query<ProductoEnt>("ConsultarProductos",
                         new { },
                         commandType: CommandType.StoredProcedure).ToList();
 

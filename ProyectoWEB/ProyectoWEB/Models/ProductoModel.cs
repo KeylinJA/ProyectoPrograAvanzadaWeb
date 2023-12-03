@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ProyectoWEB.Entities;
-using System.Configuration;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Net.Http.Headers;
+using ProyectoWEB.Entities;
 
 namespace ProyectoWEB.Models
 {
@@ -9,26 +8,24 @@ namespace ProyectoWEB.Models
     {
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
-        private readonly IHttpContextAccessor _HttpContextAccessor;
+        //private readonly IHttpContextAccessor _HttpContextAccessor;
         private string _urlApi;
 
-        public ProductoModel(HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public ProductoModel(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
             _configuration = configuration;
-            _HttpContextAccessor = httpContextAccessor;
+            //_HttpContextAccessor = httpContextAccessor;
             _urlApi = _configuration.GetSection("Llaves:urlApi").Value;
         }
 
-       
-        
-        public List<ProductosEnt>? ConsultarProductos()
+        public List<ProductoEnt>? ConsultarProductos()
         {
-            string url = _urlApi + "api/Usuario/ConsultarProductos";
+            string url = _urlApi + "api/Producto/ConsultarProductos";
             var resp = _httpClient.GetAsync(url).Result;
 
             if (resp.IsSuccessStatusCode)
-                return resp.Content.ReadFromJsonAsync<List<ProductosEnt>>().Result;
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
             else
                 return null;
         }
