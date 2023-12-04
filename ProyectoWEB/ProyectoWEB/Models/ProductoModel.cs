@@ -29,5 +29,93 @@ namespace ProyectoWEB.Models
             else
                 return null;
         }
+
+        public List<ProductoEnt>? Platillos()
+        {
+            string url = _urlApi + "api/Producto/Platillos";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
+
+        public List<ProductoEnt>? Baterias()
+        {
+            string url = _urlApi + "api/Producto/Baterias";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
+
+        public List<ProductoEnt>? Bajos()
+        {
+            string url = _urlApi + "api/Producto/Bajos";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
+
+        public List<ProductoEnt>? Guitarras()
+        {
+            string url = _urlApi + "api/Producto/Guitarras";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
+
+        public List<ProductoEnt>? AudioVideo()
+        {
+            string url = _urlApi + "api/Producto/AudioVideo";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
+
+        public List<ProductoEnt>? Viento()
+        {
+            string url = _urlApi + "api/Producto/Viento";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
+
+        public List<ProductoEnt>? PianosTeclados()
+        {
+            string url = _urlApi + "api/Producto/PianosTeclados";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
+
+        public List<ProductoEnt>? Bases()
+        {
+            string url = _urlApi + "api/Producto/Bases";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
     }
 }
