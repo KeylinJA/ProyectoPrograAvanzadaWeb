@@ -23,6 +23,22 @@ namespace ProyectoWEB.Controllers
 
         [HttpGet]
         //[FiltroSeguridad]
+        public IActionResult Carrito()
+        {
+            var datos = _productoModel.Carrito();
+            return View(datos);
+        }
+
+        [HttpGet]
+        //[FiltroSeguridad]
+        public IActionResult Detalle()
+        {
+            var datos = _productoModel.Detalle();
+            return View(datos);
+        }
+
+        [HttpGet]
+        //[FiltroSeguridad]
         public IActionResult Platillos()
         {
             var datos = _productoModel.Platillos();
