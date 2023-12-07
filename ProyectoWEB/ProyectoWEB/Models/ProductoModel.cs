@@ -30,6 +30,28 @@ namespace ProyectoWEB.Models
                 return null;
         }
 
+        public List<ProductoEnt>? Carrito()
+        {
+            string url = _urlApi + "api/Producto/Carrito";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
+
+        public List<ProductoEnt>? Detalle()
+        {
+            string url = _urlApi + "api/Producto/Detalle";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+            else
+                return null;
+        }
+
         public List<ProductoEnt>? Platillos()
         {
             string url = _urlApi + "api/Producto/Platillos";

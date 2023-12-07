@@ -5,6 +5,8 @@ namespace ProyectoWEB.Models
     public interface IProductoModel
     {
         public List<ProductoEnt>? ConsultarProductos();
+        public List<ProductoEnt>? Detalle();
+        public List<ProductoEnt>? Carrito();
         public List<ProductoEnt>? Platillos();
         public List<ProductoEnt>? Baterias();
         public List<ProductoEnt>? Bajos();

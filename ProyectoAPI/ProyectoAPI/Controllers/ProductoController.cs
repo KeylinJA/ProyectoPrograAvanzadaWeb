@@ -45,6 +45,48 @@ namespace ProyectoAPI.Controllers
         }
 
         [HttpGet]
+        [Route("Carrito")]
+        public IActionResult Carrito()
+        {
+            try
+            {
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<ProductoEnt>("Carrito",
+                        new { },
+                        commandType: CommandType.StoredProcedure).ToList();
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("Detalle")]
+        public IActionResult Detalle()
+        {
+            try
+            {
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<ProductoEnt>("Detalle",
+                        new { },
+                        commandType: CommandType.StoredProcedure).ToList();
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
         [Route("Platillos")]
         public IActionResult Platillos()
         {
