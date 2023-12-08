@@ -150,5 +150,49 @@ namespace ProyectoAPI.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("RegistrarInstrumento")]
+        public IActionResult RegistrarInstrumento(InstrumentoEnt entidad)
+        {
+            try
+            {
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<long>("RegistrarInstrumento",
+                        new { entidad.Nombre, entidad.Descripcion, entidad.IdCategoria, entidad.Cantidad, entidad.Precio },
+                        commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPut]
+        [Authorize]
+        [Route("ActualizarEstadoInstrumento")]
+        public IActionResult ActualizarEstadoInstrumento(InstrumentoEnt entidad)
+        {
+            try
+            {
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Execute("ActualizarEstadoInstrumento",
+                        new { entidad.IdInstrumento },
+                        commandType: CommandType.StoredProcedure);
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
