@@ -22,6 +22,48 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
+        //[FiltroSeguridad]
+        public IActionResult ConsultarPlatillos()
+        {
+            var datos = _instrumentoModel.ConsultarPlatillos();
+            return View(datos);
+        }
+
+        [HttpGet]
+        //[FiltroSeguridad]
+        public IActionResult ConsultarBaterias()
+        {
+            var datos = _instrumentoModel.ConsultarBaterias();
+            return View(datos);
+        }
+
+        [HttpGet]
+        //[FiltroSeguridad]
+        public IActionResult ConsultarBajos()
+        {
+            var datos = _instrumentoModel.ConsultarBajos();
+            return View(datos);
+        }
+
+        [HttpGet]
+        //[FiltroSeguridad]
+        public IActionResult ConsultarGuitarras()
+        {
+            var datos = _instrumentoModel.ConsultarGuitarras();
+            return View(datos);
+        }
+
+        [HttpGet]
+        //[FiltroSeguridad]
+        public IActionResult ConsultarPianos()
+        {
+            var datos = _instrumentoModel.ConsultarPianos();
+            return View(datos);
+        }
+
+
+
+        [HttpGet]
         public IActionResult ActualizarEstadoInstrumento(long q)
         {
             var entidad = new InstrumentoEnt();
