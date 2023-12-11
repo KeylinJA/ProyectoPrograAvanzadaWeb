@@ -150,7 +150,7 @@ namespace ProyectoAPI.Controllers
 
             htmlArchivo = htmlArchivo.Replace("@@Nombre", datos.Nombre);
             htmlArchivo = htmlArchivo.Replace("@@ClaveTemporal", contrasennaTemporal);
-            htmlArchivo = htmlArchivo.Replace("@@Link", "https://localhost:7244/Login/CambiarClaveCuenta?q" + datos.IdUsuario.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@Link", "https://localhost:7244/Login/CambiarClaveCuenta?q=" + datos.IdUsuario.ToString());
 
             return htmlArchivo;
         }
