@@ -35,6 +35,8 @@ namespace ProyectoWEB.Controllers
             var resp = _usuarioModel.IniciarSesion(entidad);
             if (resp != null)
             {
+                HttpContext.Session.SetString("NombreUsuario", resp.Nombre);
+
                 return RedirectToAction("Index", "Home");
             }
             else
