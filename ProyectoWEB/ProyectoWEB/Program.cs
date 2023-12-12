@@ -11,6 +11,7 @@ builder.Services.AddSession();
 builder.Services.AddSingleton<IUsuarioModel, UsuarioModel>();
 builder.Services.AddSingleton<IProductoModel, ProductoModel>();
 builder.Services.AddSingleton<IInstrumentoModel, InstrumentoModel>();
+builder.Services.AddSingleton<ICarritoModel, CarritoModel>();
 
 var app = builder.Build();
 
