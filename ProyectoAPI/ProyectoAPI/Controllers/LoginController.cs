@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoAPI.Entities;
@@ -26,6 +27,7 @@ namespace ProyectoAPI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("IniciarSesion")]
         public IActionResult IniciarSesion(UsuarioEnt entidad)
         {
@@ -39,13 +41,9 @@ namespace ProyectoAPI.Controllers
 
                     if (datos != null)
                     {
-                        return Ok(datos);
+                        datos.Token = _utilitarios.GenerarToken(datos.IdUsuario.ToString());
                     }
-                    else
-                    {
-                        // No user found, return 404 status code
-                        return NotFound("User not found");
-                    }
+                    return Ok(datos);
                 }
             }
             catch (Exception ex)
@@ -56,6 +54,7 @@ namespace ProyectoAPI.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("RegistrarCuenta")]
         public IActionResult RegistrarCuenta(UsuarioEnt entidad)
         {
@@ -79,6 +78,7 @@ namespace ProyectoAPI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("RecuperarCuenta")]
         public IActionResult RecuperarCuenta(UsuarioEnt entidad)
         {
@@ -115,6 +115,7 @@ namespace ProyectoAPI.Controllers
         }
 
         [HttpPut]
+        [AllowAnonymous]
         [Route("CambiarClaveCuenta")]
         public IActionResult CambiarClaveCuenta(UsuarioEnt entidad)
         {

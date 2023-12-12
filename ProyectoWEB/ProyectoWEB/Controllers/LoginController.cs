@@ -6,17 +6,15 @@ namespace ProyectoWEB.Controllers
 {
     public class LoginController : Controller
     {
-        //Dependencias
-
+  
         private readonly IUsuarioModel _usuarioModel;
-        //
-
-        //Constructores
+       
+     
         public LoginController(IUsuarioModel usuarioModel)
         {
             _usuarioModel = usuarioModel;
         }
-        //
+    
 
         public IActionResult Index()
         {
@@ -43,7 +41,7 @@ namespace ProyectoWEB.Controllers
             if (resp != null)
             {
                 HttpContext.Session.SetString("NombreUsuario", resp.Nombre);
-
+                HttpContext.Session.SetString("TokenUsuario", resp.Token);
                 return RedirectToAction("Index", "Home");
             }
             else
