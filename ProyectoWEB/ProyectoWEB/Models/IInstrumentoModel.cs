@@ -1,4 +1,5 @@
-﻿using ProyectoWEB.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using ProyectoWEB.Entities;
 
 namespace ProyectoWEB.Models
 {
@@ -12,5 +13,6 @@ namespace ProyectoWEB.Models
 		public List<InstrumentoEnt>? ConsultarPianos();
 		public long RegistrarInstrumento(InstrumentoEnt entidad);
 		public int ActualizarEstadoInstrumento(InstrumentoEnt entidad);
-	}
+        public List<SelectListItem>? ConsultarCategorias();
+    }
 }

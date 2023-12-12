@@ -194,5 +194,26 @@ namespace ProyectoAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("ConsultarCategorias")]
+        public IActionResult ConsultarCategorias()
+        {
+            try
+            {
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<SelectListItem>("ConsultarCategorias",
+                        new { },
+                        commandType: CommandType.StoredProcedure).ToList();
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

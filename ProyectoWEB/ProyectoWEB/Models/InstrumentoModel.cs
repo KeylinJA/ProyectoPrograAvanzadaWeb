@@ -115,6 +115,20 @@ namespace ProyectoWEB.Models
                 return 0;
         }
 
+        public List<SelectListItem>? ConsultarCategorias()
+        {
+            string url = _urlApi + "api/Instrumento/ConsultarCategorias";
+            //string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+
+            //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<SelectListItem>>().Result;
+            else
+                return null;
+        }
+
 
     }
 }
