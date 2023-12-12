@@ -92,6 +92,14 @@ namespace ProyectoAPI.Entities
             }
             return Convert.ToBase64String(array);
         }
+
+        public long ObtenerUsuario(IEnumerable<Claim> valores)
+        {
+            var claims = valores.Select(Claim => new { Claim.Type, Claim.Value }).ToArray();
+            return long.Parse(Decrypt(claims.Where(x => x.Type == "username").ToList().FirstOrDefault().Value));
+        }
+
+
         public string Decrypt(string texto)
         {
             byte[] iv = new byte[16];

@@ -21,9 +21,9 @@ namespace ProyectoWEB.Models
         public long RegistrarCarrito(CarritoEnt entidad)
         {
             string url = _urlApi + "api/Carrito/RegistrarCarrito";
-            //string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
-            //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             JsonContent obj = JsonContent.Create(entidad);
             var resp = _httpClient.PostAsync(url, obj).Result;
 
@@ -36,9 +36,9 @@ namespace ProyectoWEB.Models
         public List<CarritoEnt>? ConsultarCarrito()
         {
             string url = _urlApi + "api/Carrito/ConsultarCarrito";
-            //string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
-            //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var resp = _httpClient.GetAsync(url).Result;
 
             if (resp.IsSuccessStatusCode)
