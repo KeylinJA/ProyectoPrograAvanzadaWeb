@@ -29,6 +29,13 @@ namespace ProyectoWEB.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult CerrarSesion()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         public IActionResult IniciarSesion(UsuarioEnt entidad)
         {

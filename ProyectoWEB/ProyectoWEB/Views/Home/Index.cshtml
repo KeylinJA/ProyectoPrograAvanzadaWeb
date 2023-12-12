@@ -49,11 +49,20 @@
                        
                         <a href="@Url.Action("Contacto", "Home")" class="nav-item nav-link">Contacto</a>
                     </div>
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="@Url.Action("IniciarSesion", "Login")" class="nav-item nav-link">Iniciar Sesión</a>
-                        @*<a href="" class="nav-item nav-link">Registrarse</a>*@
-                    </div>
-                </div>
+
+                    @if (Context.Session.GetString("NombreUsuario") != null)
+                    {
+                        <div class="navbar-nav ml-auto py-0">
+                            <a href="@Url.Action("CerrarSesion", "Login")" class="nav-item nav-link">Cerrar Sesión</a>
+                        </div>
+                            }
+                            else
+                            {
+                            <div class="navbar-nav ml-auto py-0">
+                                <a href="@Url.Action("IniciarSesion", "Login")" class="nav-item nav-link">Iniciar Sesión</a>
+
+                            </div>
+                    }
             </nav>
             <div id="header-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
