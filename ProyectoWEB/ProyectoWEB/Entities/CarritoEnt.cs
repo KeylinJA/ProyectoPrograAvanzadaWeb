@@ -6,11 +6,9 @@ namespace ProyectoWEB.Entities
         public long IdCarrito { get; set; }
         public long IdUsuario { get; set; }
         public long IdInstrumento { get; set; }
-<<<<<<< Updated upstream
+
         public int Cantidad { get; set; }
-=======
-        public int Cantidad { get; set; } 
->>>>>>> Stashed changes
+
         public DateTime Fecha { get; set; }
 
         public decimal Precio { get; set; }

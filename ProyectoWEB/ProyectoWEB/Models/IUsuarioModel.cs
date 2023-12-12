@@ -8,6 +8,7 @@ namespace ProyectoWEB.Models
 		public int RegistrarCuenta(UsuarioEnt entidad);
 		public int RecuperarCuenta(UsuarioEnt entidad);
         public int CambiarClaveCuenta(UsuarioEnt entidad);
+        public UsuarioEnt? ConsultarUsuario();
 
     }
 }

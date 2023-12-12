@@ -77,22 +77,18 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-<<<<<<< Updated upstream
 
                 @if (@Context.Session.GetString("NombreUsuario") != null)
                 {
                     @Context.Session.GetString("NombreUsuario")
+
+                    <a href="@Url.Action("PerfilUsuario", "Usuario")" class="btn border">
+                        <i class="fas fa-user text-primary"></i>
+                    </a>
                 }
                 &nbsp;&nbsp;&nbsp;
 
-                <a href="@Url.Action("Carrito", "Producto")" class="btn border">
-=======
-                <a href="" class="btn border">
-                    <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
                 <a href="@Url.Action("ConsultarCarrito", "Carrito")" class="btn border">
->>>>>>> Stashed changes
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge">0</span>
                 </a>

@@ -66,5 +66,15 @@ namespace ProyectoWEB.Models
                 return 0;
         }
 
+        public UsuarioEnt? ConsultarUsuario()
+        {
+            string url = _urlApi + "api/Usuario/ConsultarUsuario";
+            var resp = _httpClient.GetAsync(url).Result;
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<UsuarioEnt>().Result;
+            else
+                return null;
+        }
+
     }
 }
