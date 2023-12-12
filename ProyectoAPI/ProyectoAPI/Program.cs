@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 using ProyectoAPI.Entities;
+=======
+using ProyectoAPI.Models;
+>>>>>>> Stashed changes
 
 var builder = WebApplication.CreateBuilder(args);
 
