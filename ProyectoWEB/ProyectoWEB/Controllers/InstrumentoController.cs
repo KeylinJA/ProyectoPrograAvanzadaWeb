@@ -69,6 +69,14 @@ namespace ProyectoWEB.Controllers
             return View(datos);
         }
 
+        [HttpGet]
+        //[FiltroSeguridad]
+        public IActionResult ActualizarInstrumento(long q)
+        {
+            var datos = _instrumentoModel.ConsultarInstrumentos().Where(x => x.IdInstrumento == q).FirstOrDefault();
+            return View(datos);
+        }
+
 
 
         [HttpGet]
@@ -109,6 +117,51 @@ namespace ProyectoWEB.Controllers
             ViewBag.MensajePantalla = "No se pudo registrar su producto";
             return View();
 
+        }
+
+        [HttpPost]
+        public IActionResult ActualizarInstrumento(IFormFile ImgInstrumento, InstrumentoEnt entidad)
+        {
+            string ext = string.Empty;
+            string folder = string.Empty;
+            string archivo = string.Empty;
+
+            if (ImgInstrumento != null)
+            {
+                ext = Path.GetExtension(Path.GetFileName(ImgInstrumento.FileName));
+                folder = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot\\imagenes");
+                archivo = Path.Combine(folder, entidad.IdInstrumento + ext);
+
+                if (ext.ToLower() != ".png")
+                {
+                    ViewBag.MensajePantalla = "La imagen debe ser .png";
+                    return View();
+                }
+            }
+
+            var resp = _instrumentoModel.ActualizarInstrumento(entidad);
+
+            //var datos = _carritoModel.ConsultarCarrito();
+            //HttpContext.Session.SetString("Total", datos.Sum(x => x.Total).ToString());
+            //HttpContext.Session.SetString("Cantidad", datos.Sum(x => x.Cantidad).ToString());
+
+            if (resp == 1)
+            {
+                if (ImgInstrumento != null)
+                {
+                    using (Stream fileStream = new FileStream(archivo, FileMode.Create))
+                    {
+                        ImgInstrumento.CopyTo(fileStream);
+                    }
+                }
+
+                return RedirectToAction("ConsultarInstrumentos", "Instrumento");
+            }
+            else
+            {
+                ViewBag.MensajePantalla = "No se pudo actualizar el producto";
+                return View();
+            }
         }
     } 
 }

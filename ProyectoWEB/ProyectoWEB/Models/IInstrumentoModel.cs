@@ -14,5 +14,6 @@ namespace ProyectoWEB.Models
 		public long RegistrarInstrumento(InstrumentoEnt entidad);
 		public int ActualizarEstadoInstrumento(InstrumentoEnt entidad);
         public List<SelectListItem>? ConsultarCategorias();
+        public int ActualizarInstrumento(InstrumentoEnt entidad);
     }
 }

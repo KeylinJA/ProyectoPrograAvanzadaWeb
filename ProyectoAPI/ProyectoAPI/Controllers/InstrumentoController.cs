@@ -215,5 +215,27 @@ namespace ProyectoAPI.Controllers
             }
         }
 
+        [HttpPut]
+        // [Authorize]
+        [Route("ActualizarInstrumento")]
+        public IActionResult ActualizarInstrumento(InstrumentoEnt entidad)
+        {
+            try
+            {
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Execute("ActualizarInstrumento",
+                        new { entidad.Nombre, entidad.Descripcion, entidad.Precio, entidad.Cantidad, entidad.IdInstrumento },
+                        commandType: CommandType.StoredProcedure);
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
