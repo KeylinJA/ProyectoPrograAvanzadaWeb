@@ -69,5 +69,27 @@ namespace ProyectoAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut]
+        [Authorize]
+        [Route("ActualizarCuenta")]
+        public IActionResult ActualizarCuenta(UsuarioEnt entidad)
+        {
+            try
+            {
+                long IdUsuario = long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString()));
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Execute("ActualizarCuenta",
+                        new { entidad.Identificacion, entidad.Nombre, entidad.CorreoElectronico, IdUsuario },
+                        commandType: CommandType.StoredProcedure);
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

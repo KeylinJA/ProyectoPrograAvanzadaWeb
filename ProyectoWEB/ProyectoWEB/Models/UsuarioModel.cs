@@ -42,6 +42,20 @@ namespace ProyectoWEB.Models
             else
                 return 0;
         }
+
+        public int ActualizarCuenta(UsuarioEnt entidad)
+        {
+            string url = _urlApi + "api/Usuario/ActualizarCuenta";
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            JsonContent obj = JsonContent.Create(entidad);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var resp = _httpClient.PutAsync(url, obj).Result;
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<int>().Result;
+            else
+                return 0;
+        }
+
         public int RecuperarCuenta(UsuarioEnt entidad)
         {
             string url = _urlApi + "api/Login/RecuperarCuenta";

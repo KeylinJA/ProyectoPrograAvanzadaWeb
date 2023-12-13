@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoWEB.Entities;
 using ProyectoWEB.Models;
 
 namespace ProyectoWEB.Controllers
 {
+    [ResponseCache(NoStore = true, Duration = 0)]
     public class UsuarioController : Controller
     {
         private readonly IUsuarioModel _usuarioModel;
@@ -12,13 +14,30 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
+        [FiltroSeguridad]
         public IActionResult PerfilUsuario()
         {
             var datos = _usuarioModel.ConsultarUsuario();
             return View(datos);
         }
 
+        [HttpPost]
+        [FiltroSeguridad]
+        public IActionResult PerfilUsuario(UsuarioEnt entidad)
+        {
+            var resp = _usuarioModel.ActualizarCuenta(entidad);
+            if (resp == 1)
+            {
+                HttpContext.Session.SetString("NombreUsuario", entidad.Nombre);
+                ViewBag.MensajePantalla = "Su cuenta se actualizó correctamente";
+            }
+            else
+                ViewBag.MensajePantalla = "No se pudo actualizar su cuenta";
+            return View();
+        }
+
         [HttpGet]
+        [FiltroSeguridad]
         public IActionResult ConsultarUsuarios()
         {
             var datos = _usuarioModel.ConsultarUsuarios();

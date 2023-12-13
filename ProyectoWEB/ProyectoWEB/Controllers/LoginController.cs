@@ -4,6 +4,7 @@ using ProyectoWEB.Models;
 
 namespace ProyectoWEB.Controllers
 {
+    [ResponseCache(NoStore = true, Duration = 0)]
     public class LoginController : Controller
     {
   
@@ -28,6 +29,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
+        [FiltroSeguridad]
         public IActionResult CerrarSesion()
         {
             HttpContext.Session.Clear();

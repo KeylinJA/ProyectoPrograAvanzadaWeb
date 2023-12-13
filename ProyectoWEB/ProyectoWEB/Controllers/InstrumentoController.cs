@@ -4,6 +4,7 @@ using ProyectoWEB.Models;
 
 namespace ProyectoWEB.Controllers
 {
+    [ResponseCache(NoStore = true, Duration = 0)]
     public class InstrumentoController : Controller
     {
         private readonly IInstrumentoModel _instrumentoModel;
@@ -23,7 +24,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
-        //[FiltroSeguridad]
+        [FiltroSeguridad]
         public IActionResult MantenimientoInstrumentos()
         {
             var datos = _instrumentoModel.ConsultarInstrumentos();
@@ -31,6 +32,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
+        [FiltroSeguridad]
         public IActionResult RegistrarInstrumento()
         {
             ViewBag.Categorias = _instrumentoModel.ConsultarCategorias();
@@ -78,7 +80,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
-        //[FiltroSeguridad]
+        [FiltroSeguridad]
         public IActionResult ActualizarInstrumento(long q)
         {
             var datos = _instrumentoModel.ConsultarInstrumentos().Where(x => x.IdInstrumento == q).FirstOrDefault();
@@ -88,6 +90,7 @@ namespace ProyectoWEB.Controllers
 
 
         [HttpGet]
+        [FiltroSeguridad]
         public IActionResult ActualizarEstadoInstrumento(long q)
         {
             var entidad = new InstrumentoEnt();
@@ -98,6 +101,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpPost]
+        [FiltroSeguridad]
         public IActionResult RegistrarInstrumento(IFormFile ImgInstrumento, InstrumentoEnt entidad)
         {
             string ext = Path.GetExtension(Path.GetFileName(ImgInstrumento.FileName));
@@ -128,6 +132,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpPost]
+        [FiltroSeguridad]
         public IActionResult ActualizarInstrumento(IFormFile ImgInstrumento, InstrumentoEnt entidad)
         {
             string ext = string.Empty;
