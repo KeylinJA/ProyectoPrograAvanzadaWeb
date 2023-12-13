@@ -18,6 +18,14 @@ namespace ProyectoWEB.Controllers
         //[FiltroSeguridad]
         public IActionResult ConsultarInstrumentos()
         {
+            var datos = _instrumentoModel.ConsultarInstrumentos().Where(x => x.Cantidad > 0 && x.Estado == true).ToList();
+            return View(datos);
+        }
+
+        [HttpGet]
+        //[FiltroSeguridad]
+        public IActionResult MantenimientoInstrumentos()
+        {
             var datos = _instrumentoModel.ConsultarInstrumentos();
             return View(datos);
         }
@@ -33,7 +41,7 @@ namespace ProyectoWEB.Controllers
         //[FiltroSeguridad]
         public IActionResult ConsultarPlatillos()
         {
-            var datos = _instrumentoModel.ConsultarPlatillos();
+            var datos = _instrumentoModel.ConsultarPlatillos().Where(x => x.Cantidad > 0 && x.Estado == true).ToList();
             return View(datos);
         }
 
@@ -41,7 +49,7 @@ namespace ProyectoWEB.Controllers
         //[FiltroSeguridad]
         public IActionResult ConsultarBaterias()
         {
-            var datos = _instrumentoModel.ConsultarBaterias();
+            var datos = _instrumentoModel.ConsultarBaterias().Where(x => x.Cantidad > 0 && x.Estado == true).ToList();
             return View(datos);
         }
 
@@ -49,7 +57,7 @@ namespace ProyectoWEB.Controllers
         //[FiltroSeguridad]
         public IActionResult ConsultarBajos()
         {
-            var datos = _instrumentoModel.ConsultarBajos();
+            var datos = _instrumentoModel.ConsultarBajos().Where(x => x.Cantidad > 0 && x.Estado == true).ToList();
             return View(datos);
         }
 
@@ -57,7 +65,7 @@ namespace ProyectoWEB.Controllers
         //[FiltroSeguridad]
         public IActionResult ConsultarGuitarras()
         {
-            var datos = _instrumentoModel.ConsultarGuitarras();
+            var datos = _instrumentoModel.ConsultarGuitarras().Where(x => x.Cantidad > 0 && x.Estado == true).ToList();
             return View(datos);
         }
 
@@ -65,7 +73,7 @@ namespace ProyectoWEB.Controllers
         //[FiltroSeguridad]
         public IActionResult ConsultarPianos()
         {
-            var datos = _instrumentoModel.ConsultarPianos();
+            var datos = _instrumentoModel.ConsultarPianos().Where(x => x.Cantidad > 0 && x.Estado == true).ToList();
             return View(datos);
         }
 
@@ -86,7 +94,7 @@ namespace ProyectoWEB.Controllers
             entidad.IdInstrumento = q;
 
             _instrumentoModel.ActualizarEstadoInstrumento(entidad);
-            return RedirectToAction("ConsultarInstrumentos", "Instrumento");
+            return RedirectToAction("MantenimientoInstrumentos", "Instrumento");
         }
 
         [HttpPost]

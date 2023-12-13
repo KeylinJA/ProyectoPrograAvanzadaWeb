@@ -173,7 +173,7 @@ namespace ProyectoAPI.Controllers
 
 
         [HttpPut]
-        [Authorize]
+        //[Authorize]
         [Route("ActualizarEstadoInstrumento")]
         public IActionResult ActualizarEstadoInstrumento(InstrumentoEnt entidad)
         {
