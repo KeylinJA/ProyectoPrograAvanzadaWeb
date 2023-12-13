@@ -13,14 +13,7 @@
             </a>
             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                 <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                   @* <div class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a>
-                        <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                            <a href="" class="dropdown-item">Men's Dresses</a>
-                            <a href="" class="dropdown-item">Women's Dresses</a>
-                            <a href="" class="dropdown-item">Baby's Dresses</a>
-                        </div>
-                    </div>*@
+                   
                     <a href="@Url.Action("ConsultarPlatillos", "Instrumento")" class="nav-item nav-link">Platillos</a>
                     <a href="@Url.Action("ConsultarBaterias", "Instrumento")" class="nav-item nav-link">Baterías</a>
                     <a href="@Url.Action("ConsultarBajos", "Instrumento")" class="nav-item nav-link">Bajos</a>
@@ -83,7 +76,7 @@
                             <div class="p-3" style="max-width: 700px;">
                                 <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Descuento</h4>
                                 <h3 class="display-4 text-white font-weight-semi-bold mb-4">En tu primera compra</h3>
-                                <a href="" class="btn btn-light py-2 px-3">Comprar ahora</a>
+                                <a href="@Url.Action("ConsultarInstrumentos", "Instrumento")" class="btn btn-light py-2 px-3">Comprar ahora</a>
                             </div>
                         </div>
                     </div>
@@ -136,83 +129,7 @@
 </div>
 
 <!-- Featured End -->
-<!-- Products Start -->
-<div class="container-fluid pt-5">
-    <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Nuevos Ingresos</span></h2>
-    </div>
-    <div class="row px-xl-5 pb-3">
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="card product-item border-0 mb-4">
-                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                    <img class="img-fluid w-100" src="imagenes/BE5C.png" alt="">
-                </div>
-                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                    <h6 class="text-truncate mb-3">Bajo Eléctrico 5 Cuerdas</h6>
-                    <div class="d-flex justify-content-center">
-                        <h6>₡150.000</h6>@*<h6 class="text-muted ml-2"><del>₡150.000</del></h6>*@
-                    </div>
-                </div>
-                <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="@Url.Action("Detalle", "Producto")" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Ver detalle</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Añadir al carrito</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="card product-item border-0 mb-4">
-                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                    <img class="img-fluid w-100" src="imagenes/platillos.jpg" alt="">
-                </div>
-                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                    <h6 class="text-truncate mb-3">Platillos</h6>
-                    <div class="d-flex justify-content-center">
-                        <h6>₡14.000</h6>@*<h6 class="text-muted ml-2"><del>$123.00</del></h6>*@
-                    </div>
-                </div>
-                <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="@Url.Action("Detalle", "Producto")" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Ver detalle</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Añadir al carrito</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="card product-item border-0 mb-4">
-                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                    <img class="img-fluid w-100" src="imagenes/tambor.jpg" alt="">
-                </div>
-                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                    <h6 class="text-truncate mb-3">Tambor</h6>
-                    <div class="d-flex justify-content-center">
-                        <h6>₡29.000</h6>@*<h6 class="text-muted ml-2"><del>$123.00</del></h6>*@
-                    </div>
-                </div>
-                <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="@Url.Action("Detalle", "Producto")" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Ver detalle</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Añadir al carrito</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-            <div class="card product-item border-0 mb-4">
-                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                    <img class="img-fluid w-100" src="imagenes/violin.jpg" alt="">
-                </div>
-                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                    <h6 class="text-truncate mb-3">Violín</h6>
-                    <div class="d-flex justify-content-center">
-                        <h6>₡80.000</h6>@*<h6 class="text-muted ml-2"><del>$123.00</del></h6>*@
-                    </div>
-                </div>
-                <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="@Url.Action("Detalle", "Producto")" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Ver detalle</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Añadir al carrito</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Products End -->
+
 <!-- Subscribe Start -->
 <div class="container-fluid bg-secondary my-5">
     <div class="row justify-content-md-center py-5 px-xl-5">

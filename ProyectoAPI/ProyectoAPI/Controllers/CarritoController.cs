@@ -24,29 +24,29 @@ namespace ProyectoAPI.Controllers
             _utilitarios = utilitarios;
         }
 
-        //[HttpPost]
-        //[Authorize]
-        //[Route("RegistrarCarrito")]
-        //public IActionResult RegistrarCarrito(CarritoEnt entidad)
-        //{
-        //    try
-        //    {
-        //        long IdUsuario = _utilitarios.ObtenerUsuario(User.Claims);
+        [HttpPost]
+        [Authorize]
+        [Route("RegistrarCarrito")]
+        public IActionResult RegistrarCarrito(CarritoEnt entidad)
+        {
+            try
+            {
+                long IdUsuario = _utilitarios.ObtenerUsuario(User.Claims);
 
-        //        using (var context = new SqlConnection(_connection))
-        //        {
-        //            var datos = context.Execute("RegistrarCarrito",
-        //                new { IdUsuario, entidad.IdInstrumento, entidad.Cantidad },
-        //                commandType: CommandType.StoredProcedure);
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Execute("RegistrarCarrito",
+                        new { IdUsuario, entidad.IdInstrumento, entidad.Cantidad },
+                        commandType: CommandType.StoredProcedure);
 
-        //            return Ok(datos);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         //[HttpGet]
         //[Authorize]
