@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label>Rol</label>
-                    @Html.TextBoxFor(m => m.IdRol, new { @class="form-control form-control-lg", @type="text", @placeholder="Rol" })
+                    @Html.TextBoxFor(m => m.IdRol, new { @readOnly="readOnly", @class="form-control form-control-lg", @type="text", @placeholder="Rol" })
                 </div>
                
                 <button type="submit" class="btn btn-primary mr-2">Procesar</button>

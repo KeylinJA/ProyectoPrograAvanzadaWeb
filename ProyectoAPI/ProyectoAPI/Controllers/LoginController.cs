@@ -42,8 +42,14 @@ namespace ProyectoAPI.Controllers
                     if (datos != null)
                     {
                         datos.Token = _utilitarios.GenerarToken(datos.IdUsuario.ToString());
+
+                        return Ok(datos);
                     }
-                    return Ok(datos);
+
+                    else
+                    {
+                        return BadRequest("No se logró validar su información");
+                    }
                 }
             }
             catch (Exception ex)

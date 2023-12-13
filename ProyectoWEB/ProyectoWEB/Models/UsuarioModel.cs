@@ -9,12 +9,14 @@ namespace ProyectoWEB.Models
 
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _HttpContextAccessor;
         private string _urlApi;
 
-        public UsuarioModel(HttpClient httpClient, IConfiguration configuration)
+        public UsuarioModel(HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _httpClient = httpClient;
             _configuration = configuration;
+            _HttpContextAccessor = httpContextAccessor;
             _urlApi = _configuration.GetSection("Llaves:urlApi").Value;
         }
 
@@ -69,7 +71,11 @@ namespace ProyectoWEB.Models
         public UsuarioEnt? ConsultarUsuario()
         {
             string url = _urlApi + "api/Usuario/ConsultarUsuario";
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var resp = _httpClient.GetAsync(url).Result;
+
             if (resp.IsSuccessStatusCode)
                 return resp.Content.ReadFromJsonAsync<UsuarioEnt>().Result;
             else
