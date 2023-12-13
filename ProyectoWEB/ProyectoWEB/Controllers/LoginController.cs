@@ -44,6 +44,7 @@ namespace ProyectoWEB.Controllers
             {
                 HttpContext.Session.SetString("NombreUsuario", resp.Nombre);
                 HttpContext.Session.SetString("TokenUsuario", resp.Token);
+                HttpContext.Session.SetString("RolUsuario", resp.IdRol.ToString());
                 return RedirectToAction("Index", "Home");
             }
             else
