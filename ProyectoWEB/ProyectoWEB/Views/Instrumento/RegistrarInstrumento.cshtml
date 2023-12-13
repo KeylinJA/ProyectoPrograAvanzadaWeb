@@ -1,4 +1,5 @@
-﻿@model ProyectoWEB.Entities.InstrumentoEnt
+﻿
+@model ProyectoWEB.Entities.InstrumentoEnt
 @{
     ViewData["Title"] = "RegistrarInstrumento";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,12 +10,12 @@
         <div class="card-body">
             <h4 class="card-title">Información de Instrumento</h4>
 
-            @using (Html.BeginForm("RegistrarInstrumento", "Instrumento", FormMethod.Post, new { @class = "pt-3", @enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("RegistrarInstrumento", "Instrumento", FormMethod.Post, new { @class = "pt-3", @enctype = "multipart/form-data", onsubmit = "return validarFormulario();" }))
             {
                 @ViewBag.MensajePantalla
 
                 <div class="form-group">
-                    <label>Nombre</label>
+                    <label required>Nombre</label>
                     @Html.TextBoxFor(m => m.Nombre, new { @class="form-control form-control-lg", @type="text", @placeholder="Nombre" })
                 </div>
                 <div class="form-group">
@@ -45,4 +46,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    function validarFormulario() {
+        var nombre = document.getElementById('Nombre').value;
+        var descripcion = document.getElementById('Descripcion').value;
+        var precio = document.getElementById('Precio').value;
+        var cantidad = document.getElementById('Cantidad').value;
+        var categoria = document.getElementById('IdCategoria').value;
+        var imagen = document.getElementById('ImgInstrumento').value;
+
+        if (nombre === '' || descripcion === '' || precio === '' || cantidad === '' || categoria === '' || imagen === '') {
+            alert('Todos los campos son obligatorios. Por favor, complete todos los campos.');
+            return false;
+        }
+
+        return true;
+    }
+</script>
 
