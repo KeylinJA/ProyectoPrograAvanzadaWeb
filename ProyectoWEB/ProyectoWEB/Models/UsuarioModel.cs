@@ -82,5 +82,17 @@ namespace ProyectoWEB.Models
                 return null;
         }
 
+        public List<UsuarioEnt>? ConsultarUsuarios()
+        {
+            string url = _urlApi + "api/Usuario/ConsultarUsuarios";
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var resp = _httpClient.GetAsync(url).Result;
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<UsuarioEnt>>().Result;
+            else
+                return null;
+        }
+
     }
 }

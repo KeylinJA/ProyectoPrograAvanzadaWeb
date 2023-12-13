@@ -46,5 +46,28 @@ namespace ProyectoAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Authorize]
+        [Route("ConsultarUsuarios")]
+        public IActionResult ConsultarUsuarios()
+        {
+            try
+            {
+                long IdUsuario = long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString()));
+
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<UsuarioEnt>("ConsultarUsuarios",
+                        new { IdUsuario },
+                        commandType: CommandType.StoredProcedure).ToList();
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

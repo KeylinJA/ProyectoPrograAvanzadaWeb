@@ -17,5 +17,12 @@ namespace ProyectoWEB.Controllers
             var datos = _usuarioModel.ConsultarUsuario();
             return View(datos);
         }
+
+        [HttpGet]
+        public IActionResult ConsultarUsuarios()
+        {
+            var datos = _usuarioModel.ConsultarUsuarios();
+            return View(datos);
+        }
     }
 }
