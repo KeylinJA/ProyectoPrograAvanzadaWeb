@@ -71,5 +71,16 @@ namespace ProyectoWEB.Controllers
             var datos = _usuarioModel.ConsultarUsuarios();
             return View(datos);
         }
+
+        [HttpGet]
+        [FiltroSeguridad]
+        public IActionResult ActualizarEstadoUsuario(long q)
+        {
+            var entidad = new UsuarioEnt();
+            entidad.IdUsuario = q;
+
+            _usuarioModel.ActualizarEstadoUsuario(entidad);
+            return RedirectToAction("ConsultarUsuarios", "Usuario");
+        }
     }
 }

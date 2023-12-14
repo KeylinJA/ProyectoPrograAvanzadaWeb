@@ -12,6 +12,7 @@ namespace ProyectoWEB.Models
         public UsuarioEnt? ConsultarUsuario();
         public int CambiarClave(UsuarioEnt entidad);
         public List<UsuarioEnt>? ConsultarUsuarios();
+        public int ActualizarEstadoUsuario(UsuarioEnt entidad);
 
     }
 }
