@@ -1,0 +1,40 @@
+﻿@model ProyectoWEB.Entities.UsuarioEnt
+
+@{
+    ViewData["Title"] = "ActualizarUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12 grid-margin stretch-card" style="margin-top: 50px; margin-bottom: 50px;">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="card-title">Información General</h4>
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("CambiarClave", "Usuario")'">Cambiar Contraseña</button>
+            </div>
+
+            @using (Html.BeginForm("ActualizarUsuario", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
+            {
+                @ViewBag.MensajePantalla
+
+                @Html.HiddenFor(m => m.IdUsuario)
+
+                <div class="form-group">
+                    <label>Identificación</label>
+                    @Html.TextBoxFor(m => m.Identificacion, new { @readOnly="readOnly", @class="form-control form-control-lg", @type="text", @placeholder="Identificación" })
+                </div>
+                <div class="form-group">
+                    <label>Nombre</label>
+                    @Html.TextBoxFor(m => m.Nombre, new { @class="form-control form-control-lg", @type="text", @placeholder="Nombre" })
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    @Html.TextBoxFor(m => m.CorreoElectronico, new { @class="form-control form-control-lg", @type="email", @placeholder="Correo Electrónico" })
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
+            }
+        </div>
+    </div>
+</div>
+

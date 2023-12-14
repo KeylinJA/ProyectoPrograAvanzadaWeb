@@ -17,8 +17,8 @@ namespace ProyectoWEB.Controllers
         [FiltroSeguridad]
         public IActionResult PerfilUsuario()
         {
-            var datos = _usuarioModel.ConsultarUsuario();
-            return View(datos);
+                var datos = _usuarioModel.ConsultarUsuario(0);
+                return View(datos);
         }
 
         [HttpPost]
@@ -81,6 +81,31 @@ namespace ProyectoWEB.Controllers
 
             _usuarioModel.ActualizarEstadoUsuario(entidad);
             return RedirectToAction("ConsultarUsuarios", "Usuario");
+        }
+
+        [HttpGet]
+        [FiltroSeguridad]
+        public IActionResult ActualizarUsuario(long q)
+        {
+            var datos = _usuarioModel.ConsultarUsuario(q);
+            return View(datos);
+        }
+
+        [HttpPost]
+        [FiltroSeguridad]
+        public IActionResult ActualizarUsuario(UsuarioEnt entidad)
+        {
+            var resp = _usuarioModel.ActualizarCuenta(entidad);
+
+            if (resp == 1)
+            {
+                return RedirectToAction("ConsultarUsuarios", "Usuario");
+            }
+            else
+            {
+                ViewBag.MensajePantalla = "No se pudo actualizar su cuenta";
+                return View();
+            }
         }
     }
 }

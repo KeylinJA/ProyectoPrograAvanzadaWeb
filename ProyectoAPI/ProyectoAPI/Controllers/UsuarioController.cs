@@ -26,11 +26,11 @@ namespace ProyectoAPI.Controllers
         [HttpGet]
         [Authorize]
         [Route("ConsultarUsuario")]
-        public IActionResult ConsultarUsuario()
+        public IActionResult ConsultarUsuario(long q)
         {
             try
             {
-                long IdUsuario = long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString()));
+                long IdUsuario = (q != 0 ? q : long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString())));
 
                 using (var context = new SqlConnection(_connection))
                 {
@@ -54,7 +54,8 @@ namespace ProyectoAPI.Controllers
         {
             try
             {
-                long IdUsuario = long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString()));
+                long IdUsuario = (entidad.IdUsuario != 0 ? entidad.IdUsuario : long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString())));
+
                 using (var context = new SqlConnection(_connection))
                 {
                     var datos = context.Execute("ActualizarCuenta",

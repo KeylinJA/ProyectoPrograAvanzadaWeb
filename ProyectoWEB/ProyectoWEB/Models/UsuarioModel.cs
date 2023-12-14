@@ -82,9 +82,9 @@ namespace ProyectoWEB.Models
                 return 0;
         }
 
-        public UsuarioEnt? ConsultarUsuario()
+        public UsuarioEnt? ConsultarUsuario(long q)
         {
-            string url = _urlApi + "api/Usuario/ConsultarUsuario";
+            string url = _urlApi + "api/Usuario/ConsultarUsuario?q=" + q;
             string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
