@@ -48,53 +48,53 @@ namespace ProyectoAPI.Controllers
             }
         }
 
-        //[HttpGet]
-        //[Authorize]
-        //[Route("ConsultarCarrito")]
-        //public IActionResult ConsultarCarrito()
-        //{
-        //    try
-        //    {
-        //        long IdUsuario = _utilitarios.ObtenerUsuario(User.Claims);
+        [HttpGet]
+        [Authorize]
+        [Route("ConsultarCarrito")]
+        public IActionResult ConsultarCarrito()
+        {
+            try
+            {
+                long IdUsuario = _utilitarios.ObtenerUsuario(User.Claims);
 
-        //        using (var context = new SqlConnection(_connection))
-        //        {
-        //            var datos = context.Query<CarritoEnt>("ConsultarCarrito",
-        //                new { IdUsuario },
-        //                commandType: CommandType.StoredProcedure).ToList();
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<CarritoEnt>("ConsultarCarrito",
+                        new { IdUsuario },
+                        commandType: CommandType.StoredProcedure).ToList();
 
-        //            return Ok(datos);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
-        //[HttpPost]
-        //[Authorize]
-        //[Route("PagarCarrito")]
-        //public IActionResult PagarCarrito()
-        //{
-        //    try
-        //    {
-        //        long IdUsuario = _utilitarios.ObtenerUsuario(User.Claims);
+        [HttpPost]
+        [Authorize]
+        [Route("PagarCarrito")]
+        public IActionResult PagarCarrito()
+        {
+            try
+            {
+                long IdUsuario = _utilitarios.ObtenerUsuario(User.Claims);
 
-        //        using (var context = new SqlConnection(_connection))
-        //        {
-        //            var datos = context.Query<string>("PagarCarrito",
-        //                new { IdUsuario },
-        //                commandType: CommandType.StoredProcedure).FirstOrDefault();
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<string>("PagarCarrito",
+                        new { IdUsuario },
+                        commandType: CommandType.StoredProcedure).FirstOrDefault();
 
-        //            return Ok(datos);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpDelete]
         [Authorize]
@@ -119,5 +119,61 @@ namespace ProyectoAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [HttpGet]
+        [Authorize]
+        [Route("ConsultarFacturas")]
+        public IActionResult ConsultarFacturas()
+        {
+            try
+            {
+                long IdUsuario = _utilitarios.ObtenerUsuario(User.Claims);
+
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<FacturasEnt>("ConsultarFacturas",
+                        new { IdUsuario },
+                        commandType: CommandType.StoredProcedure).ToList();
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("ConsultarDetalleFactura")]
+        public IActionResult ConsultarDetalleFactura(long q)
+        {
+            try
+            {
+                long IdFactura = q;
+
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<FacturasEnt>("ConsultarDetalleFactura",
+                        new { IdFactura },
+                        commandType: CommandType.StoredProcedure).ToList();
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
+
+
+
     }
 }

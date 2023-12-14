@@ -1,15 +1,18 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Dapper;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Data;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ProyectoAPI.Entities
 {
@@ -128,19 +131,32 @@ namespace ProyectoAPI.Entities
             }
         }
 
-        public string GenerarToken(string idUsuario)
+        public string GenerarToken(string IdUsuario, string IdRol)
         {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, Encrypt(idUsuario))
-            };
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim("username", Encrypt(IdUsuario)));
+            claims.Add(new Claim("userrol", Encrypt(IdRol)));
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Ty1UELmVFKQmMD4af0a4jvfZS30cXu3U"));
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
             var token = new JwtSecurityToken(
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(10),
                 signingCredentials: cred);
+
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+
+        public void ObtenerClaims(IEnumerable<Claim> valores, ref string username, ref string userrol, ref bool isAdmin)
+        {
+            var claims = valores.Select(Claim => new { Claim.Type, Claim.Value }).ToArray();
+            username = Decrypt(claims.Where(x => x.Type == "username").ToList().FirstOrDefault().Value);
+            userrol = Decrypt(claims.Where(x => x.Type == "userrol").ToList().FirstOrDefault().Value);
+
+            if (userrol == "1")
+                isAdmin = true;
         }
     }
 }

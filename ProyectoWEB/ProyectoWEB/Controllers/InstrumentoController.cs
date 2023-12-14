@@ -8,10 +8,12 @@ namespace ProyectoWEB.Controllers
     public class InstrumentoController : Controller
     {
         private readonly IInstrumentoModel _instrumentoModel;
+        private readonly ICarritoModel _carritoModel;
         private IHostEnvironment _hostingEnvironment;
-        public InstrumentoController(IInstrumentoModel instrumentoModel, IHostEnvironment hostingEnvironment)
+        public InstrumentoController(IInstrumentoModel instrumentoModel, ICarritoModel carritoModel, IHostEnvironment hostingEnvironment)
         {
             _instrumentoModel = instrumentoModel;
+            _carritoModel = carritoModel;
             _hostingEnvironment = hostingEnvironment;
         }
 

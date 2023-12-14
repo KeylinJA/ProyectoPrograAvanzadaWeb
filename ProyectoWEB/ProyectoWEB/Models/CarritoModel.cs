@@ -21,7 +21,7 @@ namespace ProyectoWEB.Models
         public long RegistrarCarrito(CarritoEnt entidad)
         {
             string url = _urlApi + "api/Carrito/RegistrarCarrito";
-            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+           string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             JsonContent obj = JsonContent.Create(entidad);
@@ -36,9 +36,9 @@ namespace ProyectoWEB.Models
         public List<CarritoEnt>? ConsultarCarrito()
         {
             string url = _urlApi + "api/Carrito/ConsultarCarrito";
-            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+           string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+           _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var resp = _httpClient.GetAsync(url).Result;
 
             if (resp.IsSuccessStatusCode)
@@ -51,9 +51,9 @@ namespace ProyectoWEB.Models
         {
             var entidad = new CarritoEnt();
             string url = _urlApi + "api/Carrito/PagarCarrito";
-            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+         //   string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+          //  _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             JsonContent obj = JsonContent.Create(entidad);
             var resp = _httpClient.PostAsync(url, obj).Result;
 
@@ -67,9 +67,9 @@ namespace ProyectoWEB.Models
         public int EliminarProductoCarrito(long q)
         {
             string url = _urlApi + "api/Carrito/EliminarProductoCarrito?q=" + q;
-            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+         //   string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+         //   _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var resp = _httpClient.DeleteAsync(url).Result;
 
             if (resp.IsSuccessStatusCode)
@@ -77,5 +77,36 @@ namespace ProyectoWEB.Models
             else
                 return 0;
         }
+
+
+        public List<FacturasEnt>? ConsultarFacturas()
+        {
+            string url = _urlApi + "api/Carrito/ConsultarFacturas";
+         //   string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+
+         //   _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<FacturasEnt>>().Result;
+            else
+                return null;
+        }
+
+        public List<FacturasEnt>? ConsultarDetalleFactura(long q)
+        {
+            string url = _urlApi + "api/Carrito/ConsultarDetalleFactura?q=" + q;
+         //   string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+
+         //   _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<FacturasEnt>>().Result;
+            else
+                return null;
+        }
+
+
     }
 }

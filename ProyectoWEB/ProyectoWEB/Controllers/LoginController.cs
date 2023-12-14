@@ -9,11 +9,16 @@ namespace ProyectoWEB.Controllers
     {
   
         private readonly IUsuarioModel _usuarioModel;
-       
-     
-        public LoginController(IUsuarioModel usuarioModel)
+        private readonly IInstrumentoModel _instrumentoModel;
+        private readonly ICarritoModel _carritoModel;
+
+
+        public LoginController(IUsuarioModel usuarioModel, IInstrumentoModel instrumentoModel, ICarritoModel carritoModel)
         {
             _usuarioModel = usuarioModel;
+            _instrumentoModel = instrumentoModel;
+            _carritoModel = carritoModel;
+
         }
     
 
@@ -39,13 +44,22 @@ namespace ProyectoWEB.Controllers
         [HttpPost]
         public IActionResult IniciarSesion(UsuarioEnt entidad)
         {
+            if (!ModelState.IsValid)
+                return View();
+
             var resp = _usuarioModel.IniciarSesion(entidad);
             if (resp != null)
             {
                 HttpContext.Session.SetString("NombreUsuario", resp.Nombre);
                 HttpContext.Session.SetString("TokenUsuario", resp.Token);
                 HttpContext.Session.SetString("RolUsuario", resp.IdRol.ToString());
+
+                var datos = _carritoModel.ConsultarCarrito();
+                HttpContext.Session.SetString("Total", datos.Sum(x => x.Total).ToString());
+                HttpContext.Session.SetString("Cantidad", datos.Sum(x => x.Cantidad).ToString());
                 return RedirectToAction("Index", "Home");
+
+
             }
             else
             {

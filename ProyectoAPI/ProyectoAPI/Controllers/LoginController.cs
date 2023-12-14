@@ -41,7 +41,7 @@ namespace ProyectoAPI.Controllers
 
                     if (datos != null)
                     {
-                        datos.Token = _utilitarios.GenerarToken(datos.IdUsuario.ToString());
+                        datos.Token = _utilitarios.GenerarToken(datos.IdUsuario.ToString(), datos.IdRol.ToString());
 
                         return Ok(datos);
                     }
