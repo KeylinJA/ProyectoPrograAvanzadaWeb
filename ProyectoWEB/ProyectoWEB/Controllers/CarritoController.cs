@@ -109,5 +109,18 @@ namespace ProyectoWEB.Controllers
             return View(datos);
         }
 
+
+
+
+        [HttpGet]
+
+        [FiltroSeguridad]
+
+        public IActionResult VerTodasLasFacturas()
+        {
+            var datos = _carritoModel.VerTodasLasFacturas();
+            return View(datos);
+        }
+
     }
 }

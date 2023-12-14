@@ -107,6 +107,17 @@ namespace ProyectoWEB.Models
                 return null;
         }
 
+        public List<FacturasEnt>? VerTodasLasFacturas()
+        {
+            string url = _urlApi + "api/Carrito/VerTodasLasFacturas";
+            var resp = _httpClient.GetAsync(url).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<List<FacturasEnt>>().Result;
+            else
+                return null;
+        }
+
 
     }
 }

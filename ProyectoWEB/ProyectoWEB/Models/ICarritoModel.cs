@@ -16,6 +16,7 @@ namespace ProyectoWEB.Models
 
         public List<FacturasEnt>? ConsultarDetalleFactura(long q);
 
+        public List<FacturasEnt>? VerTodasLasFacturas();
 
     }
 }

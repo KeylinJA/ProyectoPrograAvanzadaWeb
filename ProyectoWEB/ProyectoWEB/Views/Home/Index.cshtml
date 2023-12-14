@@ -44,7 +44,7 @@
                             <a href="@Url.Action("ConsultarFacturas", "Carrito")" class="nav-item nav-link">Facturas</a>
                             @if (Context.Session.GetString("RolUsuario") == "1")
                             {
-
+                                <a href="@Url.Action("VerTodasLasFacturas", "Carrito")" class="nav-item nav-link">Ver Todas Las Facturas</a>
                                 <a href="@Url.Action("MantenimientoInstrumentos", "Instrumento")" class="nav-item nav-link">Mantenimiento Instrumentos</a>
                                 <a href="@Url.Action("ConsultarUsuarios", "Usuario")" class="nav-item nav-link">Mantenimiento Usuarios</a>
 
