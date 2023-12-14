@@ -70,9 +70,8 @@ namespace ProyectoAPI.Controllers
 
                 using (var context = new SqlConnection(_connection))
                 {
-                    entidad.Estado = true;
                     var datos = context.Execute("RegistrarCuenta",
-                        new { entidad.Identificacion, entidad.Nombre, entidad.CorreoElectronico, entidad.Contrasenna, entidad.Estado },
+                        new { entidad.Identificacion, entidad.Nombre, entidad.CorreoElectronico, entidad.Contrasenna },
                         commandType: CommandType.StoredProcedure);
 
                     return Ok(datos);

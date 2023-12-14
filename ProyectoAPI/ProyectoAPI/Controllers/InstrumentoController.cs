@@ -152,6 +152,7 @@ namespace ProyectoAPI.Controllers
 
         [HttpPost]
         [Route("RegistrarInstrumento")]
+        [Authorize]
         public IActionResult RegistrarInstrumento(InstrumentoEnt entidad)
         {
             try
@@ -173,7 +174,7 @@ namespace ProyectoAPI.Controllers
 
 
         [HttpPut]
-        //[Authorize]
+        [Authorize]
         [Route("ActualizarEstadoInstrumento")]
         public IActionResult ActualizarEstadoInstrumento(InstrumentoEnt entidad)
         {
@@ -216,7 +217,7 @@ namespace ProyectoAPI.Controllers
         }
 
         [HttpPut]
-        // [Authorize]
+        [Authorize]
         [Route("ActualizarInstrumento")]
         public IActionResult ActualizarInstrumento(InstrumentoEnt entidad)
         {

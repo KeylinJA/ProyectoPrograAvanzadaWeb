@@ -122,5 +122,27 @@ namespace ProyectoAPI.Controllers
             }
         }
 
+        [HttpPut]
+        [Authorize]
+        [Route("ActualizarEstadoUsuario")]
+        public IActionResult ActualizarEstadoUsuario(UsuarioEnt entidad)
+        {
+            try
+            {
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Execute("ActualizarEstadoUsuario",
+                        new { entidad.IdUsuario },
+                        commandType: CommandType.StoredProcedure);
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

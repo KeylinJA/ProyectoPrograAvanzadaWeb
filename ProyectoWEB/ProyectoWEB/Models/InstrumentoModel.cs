@@ -4,20 +4,22 @@ using System.Net.Http.Headers;
 using ProyectoWEB.Entities;
 using Microsoft.AspNetCore.Http;
 
+
 namespace ProyectoWEB.Models
 {
     public class InstrumentoModel : IInstrumentoModel
     {
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
-        //private readonly IHttpContextAccessor _HttpContextAccessor;
+        private readonly IHttpContextAccessor _HttpContextAccessor;
         private string _urlApi;
 
-        public InstrumentoModel(HttpClient httpClient, IConfiguration configuration)
+        public InstrumentoModel(HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _httpClient = httpClient;
             _configuration = configuration;
             _urlApi = _configuration.GetSection("Llaves:urlApi").Value;
+            _HttpContextAccessor = httpContextAccessor;
         }
         public List<InstrumentoEnt>? ConsultarInstrumentos()
         {
@@ -88,9 +90,9 @@ namespace ProyectoWEB.Models
         public long RegistrarInstrumento(InstrumentoEnt entidad)
         {
             string url = _urlApi + "api/Instrumento/RegistrarInstrumento";
-            //string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
-            //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             JsonContent obj = JsonContent.Create(entidad);
             var resp = _httpClient.PostAsync(url, obj).Result;
 
@@ -103,10 +105,10 @@ namespace ProyectoWEB.Models
         public int ActualizarEstadoInstrumento(InstrumentoEnt entidad)
         {
             string url = _urlApi + "api/Instrumento/ActualizarEstadoInstrumento";
-            //string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
             JsonContent obj = JsonContent.Create(entidad);
-            //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var resp = _httpClient.PutAsync(url, obj).Result;
 
             if (resp.IsSuccessStatusCode)
@@ -132,10 +134,10 @@ namespace ProyectoWEB.Models
         public int ActualizarInstrumento(InstrumentoEnt entidad)
         {
             string url = _urlApi + "api/Instrumento/ActualizarInstrumento";
-            //string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
             JsonContent obj = JsonContent.Create(entidad);
-           // _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var resp = _httpClient.PutAsync(url, obj).Result;
 
             if (resp.IsSuccessStatusCode)
