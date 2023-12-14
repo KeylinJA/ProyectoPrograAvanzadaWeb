@@ -11,7 +11,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Información de Usuarios</h4>
-            <table class="table table-bordered">
+            <table id="showData" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Identificación</th>
@@ -48,3 +48,13 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#showData').dataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    });
+</script>

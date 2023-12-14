@@ -1,5 +1,6 @@
 ﻿using ProyectoWEB.Entities;
 using System.Net.Http.Headers;
+using System.Net.Http;
 
 namespace ProyectoWEB.Models
 {

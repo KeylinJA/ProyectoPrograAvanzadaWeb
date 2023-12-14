@@ -8,10 +8,12 @@ namespace ProyectoWEB.Controllers
     public class CarritoController : Controller
     {
         private readonly ICarritoModel _carritoModel;
+        private readonly IBitacoraModel _bitacoraModel;
 
-        public CarritoController(ICarritoModel carritoModel)
+        public CarritoController(ICarritoModel carritoModel, IBitacoraModel bitacoraModel)
         {
             _carritoModel = carritoModel;
+            _bitacoraModel = bitacoraModel;
         }
 
         [HttpPost]
@@ -44,24 +46,32 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpPost]
-
         [FiltroSeguridad]
-
         public IActionResult PagarCarrito()
         {
-            var respuesta = _carritoModel.PagarCarrito();
-            var datos = _carritoModel.ConsultarCarrito();
-            HttpContext.Session.SetString("Total", datos.Sum(x => x.Total).ToString());
-            HttpContext.Session.SetString("Cantidad", datos.Sum(x => x.Cantidad).ToString());
+            try
+            {
+                var respuesta = _carritoModel.PagarCarrito();
+                var datos = _carritoModel.ConsultarCarrito();
+                HttpContext.Session.SetString("Total", datos.Sum(x => x.Total).ToString());
+                HttpContext.Session.SetString("Cantidad", datos.Sum(x => x.Cantidad).ToString());
 
-            if (respuesta.Contains("verifique"))
-            {
-                ViewBag.MensajePantalla = respuesta;
-                return View("ConsultarCarrito", datos);
-            }
-            else
-            {
+                if (respuesta.Contains("verifique"))
+                {
+                    ViewBag.MensajePantalla = respuesta;
+                    return View("ConsultarCarrito", datos);
+                }
+
                 return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                var entidad = new BitacoraEnt();
+                entidad.Accion = "PagarCarrito";
+                entidad.Error = ex.Message;
+
+                _bitacoraModel.RegistrarErrorBitacora(entidad);
+                return View("~/Views/Shared/Error.cshtml");
             }
         }
 
@@ -82,7 +92,6 @@ namespace ProyectoWEB.Controllers
 
 
         [HttpGet]
-
         [FiltroSeguridad]
 
         public IActionResult ConsultarFacturas()
@@ -92,7 +101,6 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
-
         [FiltroSeguridad]
 
         public IActionResult ConsultarDetalleFactura(long q)

@@ -35,15 +35,15 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="#" class="nav-item nav-link active">Inicio</a>
-                        <a href="@Url.Action("ConsultarInstrumentos", "Instrumento")" class="nav-item nav-link">Todos los Instrumentos</a>
+                        <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a>
+                        <a href="@Url.Action("ConsultarInstrumentos", "Instrumento")" class="nav-item nav-link">Instrumentos</a>
 
 
                         @if (Context.Session.GetString("NombreUsuario") != null )
                         {@if (Context.Session.GetString("RolUsuario") == "1")
                             {
-                                <a href="@Url.Action("MantenimientoInstrumentos", "Instrumento")" class="nav-item nav-link">Mantenimiento de Instrumentos</a>
-                                <a href="@Url.Action("ConsultarUsuarios", "Usuario")" class="nav-item nav-link">Usuarios</a>
+                                <a href="@Url.Action("MantenimientoInstrumentos", "Instrumento")" class="nav-item nav-link">Mantenimiento Instrumentos</a>
+                                <a href="@Url.Action("ConsultarUsuarios", "Usuario")" class="nav-item nav-link">Mantenimiento Usuarios</a>
                             }
                         }
 

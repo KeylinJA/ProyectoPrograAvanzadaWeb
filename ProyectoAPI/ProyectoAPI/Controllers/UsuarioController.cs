@@ -27,7 +27,7 @@ namespace ProyectoAPI.Controllers
         [HttpGet]
         [Authorize]
         [Route("ConsultarUsuario")]
-        public IActionResult ConsultarUsuario()
+        public IActionResult ConsultarUsuario(long q)
         {
             try
             {

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-12 grid-margin stretch-card">
+<div class="col-12 grid-margin stretch-card" style="margin-top: 50px; margin-bottom: 50px;">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Información de Productos</h4>
@@ -46,7 +46,7 @@
                             }
                             <td style="text-align:center"><img src=@item.Imagen style="width:150px; height:150px; border-radius:0px"></td>
 
-                            <td style="text-align:center"><a href="@Url.Action("ActualizarEstadoInstrumento","Instrumento", new { q = item.IdInstrumento })"><i class="fa fa-tag fa-lg"></i></a></td>
+                            <td style="text-align:center"><a href="@Url.Action("ActualizarEstadoInstrumento","Instrumento", new { q = item.IdInstrumento })"><i class="fas fa-exchange-alt"></i></a></td>
                             <td style="text-align:center"><a href="@Url.Action("ActualizarInstrumento","Instrumento", new { q = item.IdInstrumento })"><i class="fa fa-tag fa-lg"></i></a></td>
                         </tr>
                     }
@@ -57,3 +57,13 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#showData').dataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    });
+</script>
