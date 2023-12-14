@@ -13,15 +13,15 @@
             </a>
             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                 <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                   
+
                     <a href="@Url.Action("ConsultarPlatillos", "Instrumento")" class="nav-item nav-link">Platillos</a>
                     <a href="@Url.Action("ConsultarBaterias", "Instrumento")" class="nav-item nav-link">Baterías</a>
                     <a href="@Url.Action("ConsultarBajos", "Instrumento")" class="nav-item nav-link">Bajos</a>
                     <a href="@Url.Action("ConsultarGuitarras", "Instrumento")" class="nav-item nav-link">Guitarras</a>
-                           
+
                     <a href="@Url.Action("ConsultarPianos", "Instrumento")" class="nav-item nav-link">Pianos y teclados</a>
-                   
-                   
+
+
                 </div>
             </nav>
         </div>
@@ -39,7 +39,7 @@
                         <a href="@Url.Action("ConsultarInstrumentos", "Instrumento")" class="nav-item nav-link">Instrumentos</a>
 
 
-                        @if (Context.Session.GetString("NombreUsuario") != null )
+                        @if (Context.Session.GetString("NombreUsuario") != null)
                         {
                             <a href="@Url.Action("ConsultarFacturas", "Carrito")" class="nav-item nav-link">Facturas</a>
                             @if (Context.Session.GetString("RolUsuario") == "1")
@@ -59,39 +59,69 @@
                         <div class="navbar-nav ml-auto py-0">
                             <a href="@Url.Action("CerrarSesion", "Login")" class="nav-item nav-link">Cerrar Sesión</a>
                         </div>
-                            }
-                            else
-                            {
-                            <div class="navbar-nav ml-auto py-0">
-                                <a href="@Url.Action("IniciarSesion", "Login")" class="nav-item nav-link">Iniciar Sesión</a>
+                    }
+                    else
+                    {
+                        <div class="navbar-nav ml-auto py-0">
+                            <a href="@Url.Action("IniciarSesion", "Login")" class="nav-item nav-link">Iniciar Sesión</a>
 
-                            </div>
+                        </div>
                     }
                 </div>
             </nav>
             <div id="header-carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active" style="height: 410px;">
-                        <img class="img-fluid" src="imagenes/carru1.jpg" alt="Image">
-                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" style="max-width: 700px;">
-                                <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Descuento</h4>
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">En tu primera compra</h3>
-                                <a href="" class="btn btn-light py-2 px-3">Comprar ahora</a>
+
+                @if (Context.Session.GetString("NombreUsuario") != null)
+                {
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 410px;">
+                            <img class="img-fluid" src="imagenes/carru1.jpg" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">Últimos ingresos</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Disfruta nuestros productos</h3>
+                                    <a href="@Url.Action("ConsultarInstrumentos", "Instrumento")" class="btn btn-light py-2 px-3">Comprar ahora</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="imagenes/carru3.jpg" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">Últimos ingresos</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Disfruta nuestros productos</h3>
+                                    <a href="@Url.Action("ConsultarInstrumentos", "Instrumento")" class="btn btn-light py-2 px-3">Comprar ahora</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item" style="height: 410px;">
-                        <img class="img-fluid" src="imagenes/carru3.jpg" alt="Image">
-                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" style="max-width: 700px;">
-                                <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Descuento</h4>
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">En tu primera compra</h3>
-                                <a href="@Url.Action("ConsultarInstrumentos", "Instrumento")" class="btn btn-light py-2 px-3">Comprar ahora</a>
+                }
+                else
+                {
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 410px;">
+                            <img class="img-fluid" src="imagenes/carru1.jpg" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">Últimos ingresos</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Disfruta nuestros productos</h3>
+                                    <a href="@Url.Action("IniciarSesion", "Login")" class="btn btn-light py-2 px-3">Comprar ahora</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="imagenes/carru3.jpg" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">Últimos ingresos</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Disfruta nuestros productos</h3>
+                                    <a href="@Url.Action("IniciarSesion", "Login")" class="btn btn-light py-2 px-3">Comprar ahora</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
                 <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
                     <div class="btn btn-dark" style="width: 45px; height: 45px;">
                         <span class="carousel-control-prev-icon mb-n2"></span>
@@ -107,7 +137,6 @@
     </div>
 </div>
 <!-- Navbar End -->
-
 <!-- Featured Start -->
 
 <div class="container-fluid pt-5">
@@ -187,4 +216,3 @@
         </div>
     </div>*@
 <!-- Vendor End -->
- 

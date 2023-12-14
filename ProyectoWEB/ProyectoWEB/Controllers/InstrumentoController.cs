@@ -170,7 +170,7 @@ namespace ProyectoWEB.Controllers
                     }
                 }
 
-                return RedirectToAction("ConsultarInstrumentos", "Instrumento");
+                return RedirectToAction("MantenimientoInstrumentos", "Instrumento");
             }
             else
             {
