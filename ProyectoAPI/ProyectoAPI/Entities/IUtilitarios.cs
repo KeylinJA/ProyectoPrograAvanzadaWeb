@@ -11,6 +11,8 @@ namespace ProyectoAPI.Entities
         public string Encrypt(string texto);
         public long ObtenerUsuario(IEnumerable<Claim> valores);
         public string Decrypt(string texto);
-        public string GenerarToken(string idUsuario);
+        public string GenerarToken(string IdUsuario, string IdRol);
+
+        public void ObtenerClaims(IEnumerable<Claim> valores, ref string username, ref string userrol, ref bool isAdmin);
     }
 }

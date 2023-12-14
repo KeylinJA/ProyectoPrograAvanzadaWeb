@@ -25,6 +25,7 @@ namespace ProyectoWEB.Controllers
             _carritoModel.RegistrarCarrito(entidad);
 
             var datos = _carritoModel.ConsultarCarrito();
+
             HttpContext.Session.SetString("Total", datos.Sum(x => x.Total).ToString());
             HttpContext.Session.SetString("Cantidad", datos.Sum(x => x.Cantidad).ToString());
 
@@ -72,6 +73,22 @@ namespace ProyectoWEB.Controllers
             return RedirectToAction("ConsultarCarrito", "Carrito");
         }
 
+
+        [HttpGet]
+    //    [FiltroSeguridad]
+        public IActionResult ConsultarFacturas()
+        {
+            var datos = _carritoModel.ConsultarFacturas();
+            return View(datos);
+        }
+
+        [HttpGet]
+   //     [FiltroSeguridad]
+        public IActionResult ConsultarDetalleFactura(long q)
+        {
+            var datos = _carritoModel.ConsultarDetalleFactura(q);
+            return View(datos);
+        }
 
     }
 }

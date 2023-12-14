@@ -11,5 +11,11 @@ namespace ProyectoWEB.Models
         public string PagarCarrito();
 
         public int EliminarProductoCarrito(long q);
+
+        public List<FacturasEnt>? ConsultarFacturas();
+
+        public List<FacturasEnt>? ConsultarDetalleFactura(long q);
+
+
     }
 }

@@ -10,35 +10,37 @@
         <!-- Shop Sidebar Start -->
         <div class="col-lg-4 col-md-12">
             <!-- Price Start -->
-            
             <!-- Price End -->
         </div>
         <!-- Shop Sidebar End -->
         <!-- Shop Product Start -->
-            <div class="row pb-3">
-                <div class="col-12 pb-1">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <div class="dropdown ml-4">
-                        </div>
+        <div class="row pb-3">
+            <div class="col-12 pb-1">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div class="dropdown ml-4">
                     </div>
                 </div>
-                     @foreach (var item in Model){
-                <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
 
-                        <div class="card product-item border-0 mb-4">
+                    <div class="card product-item border-0 mb-4">
 
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
 
-                                <img class="img-fluid w-100" src="@item.Imagen" alt="">
+                            <img class="img-fluid w-100" src="@item.Imagen" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">@item.Nombre</h6>
+                            <h7>@item.Descripcion</h7>
+                            <div class="d-flex justify-content-center">
+                                <h6>@item.Precio</h6><h6 class="text-muted ml-2"></h6>
                             </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">@item.Nombre</h6>
-                                <h7>@item.Descripcion</h7>
-                                <div class="d-flex justify-content-center">
-                                    <h6>@item.Precio</h6><h6 class="text-muted ml-2"></h6>
-                                </div>
-                                <h7>Cantidad Disponible: @item.Cantidad</h7>
-                            </div>
+                            <h7>Cantidad Disponible: @item.Cantidad</h7>
+                        </div>
+                        @if (Context.Session.GetString("NombreUsuario") != null)
+                        {
                             <div class="card-footer d-flex justify-content-between bg-light border">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -56,9 +58,12 @@
                                 <a onclick="AgregarCarrito(@item.IdInstrumento, @item.Cantidad)" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Agregar al carrito</a>
 
                             </div>
-                        </div>
-                </div>}
-            </div>
+                        }
+                    </div>
+
+                </div>
+            }
+        </div>
         <!-- Shop Product End -->
     </div>
 </div>
@@ -67,8 +72,7 @@
 <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 <script>
-    function AgregarCarrito(IdInstrumento, Disponibles) 
-    {
+    function AgregarCarrito(IdInstrumento, Disponibles) {
         let cantidadComprar = $("#cnt-" + IdInstrumento).val();
 
         if (cantidadComprar > Disponibles) {
@@ -79,8 +83,7 @@
                 text: 'La cantidad ingresada supera las unidades disponibles'
             })
         }
-        else 
-        { 
+        else {
             $.ajax({
                 type: "POST",
                 url: "/Carrito/RegistrarCarrito",
