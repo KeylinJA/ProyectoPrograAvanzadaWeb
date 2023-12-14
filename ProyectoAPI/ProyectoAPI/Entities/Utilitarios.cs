@@ -4,6 +4,12 @@ using System.Net.Mail;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Dapper;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ProyectoAPI.Entities
 {
