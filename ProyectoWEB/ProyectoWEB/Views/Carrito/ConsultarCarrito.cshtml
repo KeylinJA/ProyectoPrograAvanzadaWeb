@@ -49,47 +49,60 @@
 
         </div>
         <div class="col-lg-4">
-            @foreach (var item in Model){
-            <div class="card border-secondary mb-5">
-                <div class="card-header bg-secondary border-0">
-                    <h4 class="font-weight-semi-bold m-0">Resumen Carrito</h4>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-3 pt-1">
-                        <h6 class="font-weight-medium">SubTotal</h6>
-                            <h6 class="font-weight-medium">@item.SubTotal.ToString("N2")</h6>
-                    </div>
-
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Impuesto</h6>
-                            <h6 class="font-weight-medium">@item.Impuesto.ToString("N2")</h6>
+            @{
+                var producto = Model.FirstOrDefault(); // Cambiado el nombre de 'item' a 'producto'
+                if (producto != null)
+                {
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Resumen Carrito</h4>
                         </div>
-
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Total</h6>
-                            <h6 class="font-weight-medium">@item.Total.ToString("N2")</h6>
-                        </div>
-
-                </div>
-                    @if (Context.Session.GetString("Total") != "0")
-                    {
-                       <div class="card-footer border-secondary bg-transparent">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Total a pagar</h6>
-                                <h6 class="font-weight-medium">@decimal.Parse(Context.Session.GetString("Total")).ToString("N2").ToString()</h6>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">SubTotal</h6>
+                                <h6 class="font-weight-medium">@producto.SubTotal.ToString("N2")</h6>
                             </div>
-                            @using (Html.BeginForm("PagarCarrito", "Carrito", FormMethod.Post))
-                            {
-                             <button class="btn btn-block btn-primary my-3 py-3">Continuar con el pago</button>   
-                            }
-                            
-                       </div> 
 
-                    }
-                    
-            </div>
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">Impuesto</h6>
+                                <h6 class="font-weight-medium">@producto.Impuesto.ToString("N2")</h6>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">Total</h6>
+                                <h6 class="font-weight-medium">@producto.Total.ToString("N2")</h6>
+                            </div>
+                        </div>
+
+                        @if (Context.Session.GetString("Total") != "0")
+                        {
+                            <div class="card-footer border-secondary bg-transparent">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="font-weight-medium">Total a pagar</h6>
+                                    <h6 class="font-weight-medium">@decimal.Parse(Context.Session.GetString("Total")).ToString("N2").ToString()</h6>
+                                </div>
+                                @using (Html.BeginForm("PagarCarrito", "Carrito", FormMethod.Post))
+                                {
+                                    <button class="btn btn-block btn-primary my-3 py-3">Continuar con el pago</button>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
             }
         </div>
+
     </div>
 </div>
 <!-- Cart End -->
+
+                            <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#showData').dataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    });
+</script>

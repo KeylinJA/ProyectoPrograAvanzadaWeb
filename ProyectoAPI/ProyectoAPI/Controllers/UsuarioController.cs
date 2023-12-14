@@ -27,11 +27,13 @@ namespace ProyectoAPI.Controllers
         [HttpGet]
         [Authorize]
         [Route("ConsultarUsuario")]
-        public IActionResult ConsultarUsuario(long q)
+        public IActionResult ConsultarUsuario()
         {
             try
             {
+
                 long IdUsuario = (q != 0 ? q : _utilitarios.ObtenerUsuario(User.Claims));
+
 
                 using (var context = new SqlConnection(_connection))
                 {
@@ -50,6 +52,7 @@ namespace ProyectoAPI.Controllers
 
         [HttpPut]
         [Authorize]
+
         [Route("ActualizarCuenta")]
         public IActionResult ActualizarCuenta(UsuarioEnt entidad)
         {
@@ -73,6 +76,7 @@ namespace ProyectoAPI.Controllers
 
         [HttpPut]
         [Authorize]
+
         [Route("CambiarClave")]
         public IActionResult CambiarClave(UsuarioEnt entidad)
         {
@@ -109,28 +113,6 @@ namespace ProyectoAPI.Controllers
                     var datos = context.Query<UsuarioEnt>("ConsultarUsuarios",
                         new { IdUsuario },
                         commandType: CommandType.StoredProcedure).ToList();
-                    return Ok(datos);
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPut]
-        [Authorize]
-        [Route("ActualizarEstadoUsuario")]
-        public IActionResult ActualizarEstadoUsuario(UsuarioEnt entidad)
-        {
-            try
-            {
-                using (var context = new SqlConnection(_connection))
-                {
-                    var datos = context.Execute("ActualizarEstadoUsuario",
-                        new { entidad.IdUsuario },
-                        commandType: CommandType.StoredProcedure);
-
                     return Ok(datos);
                 }
             }
