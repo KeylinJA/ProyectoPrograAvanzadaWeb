@@ -171,7 +171,26 @@ namespace ProyectoAPI.Controllers
         }
 
 
+        [HttpGet]
+        [Route("VerTodasLasFacturas")]
+        public IActionResult VerTodasLasFacturas()
+        {
+            try
+            {
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Query<FacturasEnt>("VerTodasLasFacturas",
+                        new { },
+                        commandType: CommandType.StoredProcedure).ToList();
 
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
 
 
