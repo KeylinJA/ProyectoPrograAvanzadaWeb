@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoAPI.Entities;
+using ProyectoAPI.Models;
 using System.Data;
 using System.Data.SqlClient;
 

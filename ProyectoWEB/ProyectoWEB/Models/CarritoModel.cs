@@ -51,9 +51,9 @@ namespace ProyectoWEB.Models
         {
             var entidad = new CarritoEnt();
             string url = _urlApi + "api/Carrito/PagarCarrito";
-         //   string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
-          //  _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             JsonContent obj = JsonContent.Create(entidad);
             var resp = _httpClient.PostAsync(url, obj).Result;
 

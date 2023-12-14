@@ -15,7 +15,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpPost]
-        //[FiltroSeguridad]
+        [FiltroSeguridad]
         public IActionResult RegistrarCarrito(long IdInstrumento, int cantidadComprar)
         {
             var entidad = new CarritoEnt();
@@ -33,7 +33,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
-        //[FiltroSeguridad]
+        [FiltroSeguridad]
         public IActionResult ConsultarCarrito()
         {
             var datos = _carritoModel.ConsultarCarrito();
@@ -41,7 +41,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpPost]
-        //[FiltroSeguridad]
+        [FiltroSeguridad]
         public IActionResult PagarCarrito()
         {
             var respuesta = _carritoModel.PagarCarrito();
@@ -61,7 +61,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
-        //[FiltroSeguridad]
+        [FiltroSeguridad]
         public IActionResult EliminarProductoCarrito(long q)
         {
             _carritoModel.EliminarProductoCarrito(q);
@@ -75,7 +75,7 @@ namespace ProyectoWEB.Controllers
 
 
         [HttpGet]
-    //    [FiltroSeguridad]
+        [FiltroSeguridad]
         public IActionResult ConsultarFacturas()
         {
             var datos = _carritoModel.ConsultarFacturas();
@@ -83,7 +83,7 @@ namespace ProyectoWEB.Controllers
         }
 
         [HttpGet]
-   //     [FiltroSeguridad]
+        [FiltroSeguridad]
         public IActionResult ConsultarDetalleFactura(long q)
         {
             var datos = _carritoModel.ConsultarDetalleFactura(q);

@@ -156,9 +156,9 @@ namespace ProyectoWEB.Controllers
 
             var resp = _instrumentoModel.ActualizarInstrumento(entidad);
 
-            //var datos = _carritoModel.ConsultarCarrito();
-            //HttpContext.Session.SetString("Total", datos.Sum(x => x.Total).ToString());
-            //HttpContext.Session.SetString("Cantidad", datos.Sum(x => x.Cantidad).ToString());
+            var datos = _carritoModel.ConsultarCarrito();
+            HttpContext.Session.SetString("Total", datos.Sum(x => x.Total).ToString());
+            HttpContext.Session.SetString("Cantidad", datos.Sum(x => x.Cantidad).ToString());
 
             if (resp == 1)
             {

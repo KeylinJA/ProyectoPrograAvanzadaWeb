@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
+using ProyectoAPI.Entities;
 
-namespace ProyectoAPI.Entities
+namespace ProyectoAPI.Models
 {
     public interface IUtilitarios
     {
@@ -9,10 +10,11 @@ namespace ProyectoAPI.Entities
         public void EnviarCorreo(string Destinatario, string Asunto, string Mensaje);
 
         public string Encrypt(string texto);
-        public long ObtenerUsuario(IEnumerable<Claim> valores);
         public string Decrypt(string texto);
         public string GenerarToken(string IdUsuario, string IdRol);
 
-        public void ObtenerClaims(IEnumerable<Claim> valores, ref string username, ref string userrol, ref bool isAdmin);
+        public long ObtenerUsuario(IEnumerable<Claim> valores);
+
+        public bool IsAdmin(IEnumerable<Claim> valores);
     }
 }

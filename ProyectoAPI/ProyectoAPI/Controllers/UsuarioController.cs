@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoAPI.Entities;
+using ProyectoAPI.Models;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -30,7 +31,7 @@ namespace ProyectoAPI.Controllers
         {
             try
             {
-                long IdUsuario = (q != 0 ? q : long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString())));
+                long IdUsuario = (q != 0 ? q : _utilitarios.ObtenerUsuario(User.Claims));
 
                 using (var context = new SqlConnection(_connection))
                 {
@@ -54,7 +55,7 @@ namespace ProyectoAPI.Controllers
         {
             try
             {
-                long IdUsuario = (entidad.IdUsuario != 0 ? entidad.IdUsuario : long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString())));
+                long IdUsuario = (entidad.IdUsuario != 0 ? entidad.IdUsuario : _utilitarios.ObtenerUsuario(User.Claims));
 
                 using (var context = new SqlConnection(_connection))
                 {
@@ -77,7 +78,7 @@ namespace ProyectoAPI.Controllers
         {
             try
             {
-                long IdUsuario = long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString()));
+                long IdUsuario = _utilitarios.ObtenerUsuario(User.Claims);
 
                 using (var context = new SqlConnection(_connection))
                 {
@@ -101,7 +102,7 @@ namespace ProyectoAPI.Controllers
         {
             try
             {
-                long IdUsuario = long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString()));
+                long IdUsuario = _utilitarios.ObtenerUsuario(User.Claims);
 
                 using (var context = new SqlConnection(_connection))
                 {

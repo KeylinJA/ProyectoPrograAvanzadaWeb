@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using Dapper;
+using ProyectoAPI.Models;
 //using ProyectoAPI.Models;
 
 namespace ProyectoAPI.Controllers
