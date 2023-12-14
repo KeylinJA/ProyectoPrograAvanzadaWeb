@@ -96,6 +96,19 @@ namespace ProyectoWEB.Models
                 return null;
         }
 
+        public int CambiarClave(UsuarioEnt entidad)
+        {
+            string url = _urlApi + "api/Usuario/CambiarClave";
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            JsonContent obj = JsonContent.Create(entidad);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var resp = _httpClient.PutAsync(url, obj).Result;
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<int>().Result;
+            else
+                return 0;
+        }
+
         public List<UsuarioEnt>? ConsultarUsuarios()
         {
             string url = _urlApi + "api/Usuario/ConsultarUsuarios";

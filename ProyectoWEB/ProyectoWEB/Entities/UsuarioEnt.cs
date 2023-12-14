@@ -12,5 +12,6 @@
 
 		public string contrasennaTemporal {  get; set; } = string.Empty;
         public string Token { get; set; } = string.Empty;
+        public string contrasennaAnterior { get; set; } = string.Empty;
     }
 }

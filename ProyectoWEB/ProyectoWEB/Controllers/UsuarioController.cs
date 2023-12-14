@@ -38,6 +38,34 @@ namespace ProyectoWEB.Controllers
 
         [HttpGet]
         [FiltroSeguridad]
+        public IActionResult CambiarClave()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [FiltroSeguridad]
+        public IActionResult CambiarClave(UsuarioEnt entidad)
+        {
+            if (entidad.contrasennaAnterior.Trim() == entidad.Contrasenna.Trim())
+            {
+                ViewBag.MensajePantalla = "Debe ingresar una contraseña nueva";
+                return View();
+            }
+
+            var resp = _usuarioModel.CambiarClave(entidad);
+
+            if (resp == 1)
+                return RedirectToAction("Index", "Home");
+            else
+            {
+                ViewBag.MensajePantalla = "No se pudo actualizar su contraseña";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        [FiltroSeguridad]
         public IActionResult ConsultarUsuarios()
         {
             var datos = _usuarioModel.ConsultarUsuarios();

@@ -47,6 +47,30 @@ namespace ProyectoAPI.Controllers
             }
         }
 
+        [HttpPut]
+        [Authorize]
+        [Route("CambiarClave")]
+        public IActionResult CambiarClave(UsuarioEnt entidad)
+        {
+            try
+            {
+                long IdUsuario = long.Parse(_utilitarios.Decrypt(User.Identity.Name.ToString()));
+
+                using (var context = new SqlConnection(_connection))
+                {
+                    var datos = context.Execute("CambiarClave",
+                        new { IdUsuario, entidad.contrasennaAnterior, entidad.Contrasenna },
+                        commandType: CommandType.StoredProcedure);
+
+                    return Ok(datos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet]
         [Authorize]
         [Route("ConsultarUsuarios")]

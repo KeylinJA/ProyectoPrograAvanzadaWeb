@@ -5,10 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-md-12 grid-margin stretch-card">
+<div class="col-md-12 grid-margin stretch-card" style="margin-top: 50px; margin-bottom: 50px;">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Información General</h4>
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="card-title">Información General</h4>
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("CambiarClave", "Usuario")'">Cambiar Contraseña</button>
+            </div>
 
             @using (Html.BeginForm("PerfilUsuario", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
             {
@@ -26,9 +29,12 @@
                     <label>Correo Electrónico</label>
                     @Html.TextBoxFor(m => m.CorreoElectronico, new { @class="form-control form-control-lg", @type="email", @placeholder="Correo Electrónico" })
                 </div>
-               
-                <button type="submit" class="btn btn-primary mr-2">Procesar</button>
+
+                <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
             }
         </div>
     </div>
 </div>
+
+
+
