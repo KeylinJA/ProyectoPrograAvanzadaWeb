@@ -82,9 +82,9 @@ namespace ProyectoWEB.Models
         public List<FacturasEnt>? ConsultarFacturas()
         {
             string url = _urlApi + "api/Carrito/ConsultarFacturas";
-         //   string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
-         //   _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var resp = _httpClient.GetAsync(url).Result;
 
             if (resp.IsSuccessStatusCode)
@@ -96,9 +96,9 @@ namespace ProyectoWEB.Models
         public List<FacturasEnt>? ConsultarDetalleFactura(long q)
         {
             string url = _urlApi + "api/Carrito/ConsultarDetalleFactura?q=" + q;
-         //   string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
+            string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
 
-         //   _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var resp = _httpClient.GetAsync(url).Result;
 
             if (resp.IsSuccessStatusCode)

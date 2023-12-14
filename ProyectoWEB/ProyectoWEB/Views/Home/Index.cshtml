@@ -40,8 +40,11 @@
 
 
                         @if (Context.Session.GetString("NombreUsuario") != null )
-                        {@if (Context.Session.GetString("RolUsuario") == "1")
+                        {
+                            <a href="@Url.Action("ConsultarFacturas", "Carrito")" class="nav-item nav-link">Facturas</a>
+                            @if (Context.Session.GetString("RolUsuario") == "1")
                             {
+                                
                                 <a href="@Url.Action("MantenimientoInstrumentos", "Instrumento")" class="nav-item nav-link">Mantenimiento de Instrumentos</a>
                                 <a href="@Url.Action("ConsultarUsuarios", "Usuario")" class="nav-item nav-link">Usuarios</a>
                             }
